@@ -1,0 +1,6 @@
+{
+  "name": "ebee - App-less EV Charging",
+  "description": "Zero-friction EV charging for modern Indian properties, powered by WhatsApp + UPI. Meet the 20% EV mandate with India's first centralized app-less smart charging system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
