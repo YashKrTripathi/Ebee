@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { 
     label: "Home", 
-    href: "#",
+    href: "/",
     options: [
       { label: "Hero", href: "#hero" },
       { label: "Why ebee", href: "#why-ebee" },
@@ -24,11 +24,11 @@ const navItems = [
   },
   { 
     label: "Solutions", 
-    href: "#solutions",
+    href: "/solutions",
     options: [
-      { label: "For RWAs", href: "#rwas" },
-      { label: "For Developers", href: "#developers" },
-      { label: "For Commercial", href: "#commercial" }
+      { label: "For RWAs", href: "/solutions#rwas" },
+      { label: "For Developers", href: "/solutions#developers" },
+      { label: "For EV Users", href: "/solutions#individual-users" }
     ]
   },
   { label: "Software Platform", href: "#software-platform" },

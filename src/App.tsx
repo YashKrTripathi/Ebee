@@ -10,12 +10,14 @@ import { Footer } from "./components/Footer";
 import { WhatsAppSimulator } from "./components/WhatsAppSimulator";
 import { FeasibilityModal } from "./components/FeasibilityModal";
 import { SimulatorModal } from "./components/SimulatorModal";
+import { SolutionsPage } from "./pages/Solutions";
 
 export default function App() {
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [isSimulatorModalOpen, setIsSimulatorModalOpen] = useState(false);
   const [modalPreloadName, setModalPreloadName] = useState("");
   const [modalPreloadEmail, setModalPreloadEmail] = useState("");
+  const isSolutionsPage = window.location.pathname.replace(/\/$/, "") === "/solutions";
 
   const handleOpenGeneralAudit = () => {
     setModalPreloadName("");
@@ -40,7 +42,10 @@ export default function App() {
       {/* Sticky Top Header */}
       <Header onRequestAudit={handleOpenGeneralAudit} />
 
-      {/* Main hero page layout */}
+      {isSolutionsPage ? (
+        <SolutionsPage onRequestAudit={handleOpenGeneralAudit} />
+      ) : (
+      /* Main hero page layout */
       <main className="flex-1">
         
         {/* HERO SECTION */}
@@ -226,6 +231,7 @@ export default function App() {
         <StatsStrip />
 
       </main>
+      )}
 
       {/* FOOTER SECTION */}
       <Footer onRequestAudit={handleOpenGeneralAudit} />
