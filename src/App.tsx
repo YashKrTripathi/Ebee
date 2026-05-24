@@ -5,6 +5,7 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/blog/BlogDetail";
 import AboutUs from "./pages/AboutUs";
 import { SolutionsPage } from "./pages/Solutions";
+import { SoftwarePlatform } from "./pages/SoftwarePlatform";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Route path="/blog/:slug" element={<BlogDetail />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/solutions" element={<SolutionsPage />} />
+      <Route path="/software-platform" element={<SoftwarePlatform />} />
     </Routes>
   );
 }
