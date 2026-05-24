@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import { Header } from "../components/Header";
 import { WhyEbee } from "../components/WhyEbee";
 import { JourneySection } from "../components/JourneySection";
-import { StatsStrip } from "../components/sections/StatsStrip";
 import { Footer } from "../components/Footer";
 import { WhatsAppSimulator } from "../components/WhatsAppSimulator";
 import { FeasibilityModal } from "../components/FeasibilityModal";
@@ -211,8 +210,6 @@ export default function Home() {
 
         {/* HOW TO CHARGE SEQUENCING SECTION */}
         <JourneySection />
-
-        <StatsStrip />
 
       </main>
 

@@ -33,7 +33,6 @@ const navItems = [
     ]
   },
   { label: "Software Platform", href: "/#software-platform" },
-  { label: "Network", href: "/network" },
   {
     label: "Resources",
     href: "/resources",
@@ -43,8 +42,8 @@ const navItems = [
       { label: "FAQ", href: "/faq" },
     ],
   },
-  { label: "Case Studies", href: "/#case-studies" },
   { label: "About Us", href: "/about-us" },
+  { label: "Case Studies", href: "/#case-studies" },
 ];
 
 interface NavbarProps {
@@ -183,16 +182,24 @@ export function Navbar({ onContactClick }: NavbarProps) {
             ))}
           </nav>
 
-          {/* RIGHT: Contact Button */}
-          <button
-            type="button"
-            onClick={handleContactClick}
-            className="group relative overflow-hidden rounded-full bg-neutral-900 px-6 py-3 text-sm font-bold text-primary-500 shadow-xl shadow-neutral-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-neutral-900/40 active:scale-95 inline-flex items-center gap-2"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <span className="relative tracking-wider">Contact</span>
-            <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </button>
+          {/* RIGHT: Actions */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="/login"
+              className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white/75 px-6 py-3 text-[13px] font-bold tracking-wider text-neutral-900 shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white active:scale-95 uppercase"
+            >
+              Login
+            </Link>
+            <button
+              type="button"
+              onClick={handleContactClick}
+              className="group relative overflow-hidden rounded-full bg-neutral-900 px-6 py-3 text-[13px] font-bold text-primary-500 shadow-xl shadow-neutral-900/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-neutral-900/40 active:scale-95 inline-flex items-center gap-2 uppercase"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="relative tracking-wider">Contact</span>
+              <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </button>
+          </div>
         </div>
 
         {/* MOBILE LAYOUT CAPSULE (hidden on xl and up) */}
@@ -270,7 +277,14 @@ export function Navbar({ onContactClick }: NavbarProps) {
                 </nav>
                 
                 {/* Pushes the button to the bottom */}
-                <div className="mt-auto pointer-events-auto">
+                <div className="mt-auto pointer-events-auto flex flex-col gap-3">
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex w-full items-center justify-center rounded-full border border-white/20 bg-transparent px-6 py-4 text-sm font-black tracking-[0.15em] text-white transition-all duration-300 hover:bg-white/10 active:scale-[0.98]"
+                  >
+                    <span className="uppercase">LOGIN</span>
+                  </Link>
                   <button
                     type="button"
                     onClick={handleContactClick}

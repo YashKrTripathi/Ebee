@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   BatteryCharging,
@@ -21,9 +21,9 @@ import {
 } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
 
-interface SolutionsPageProps {
-  onRequestAudit: () => void;
-}
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { FeasibilityModal } from "../components/FeasibilityModal";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -213,7 +213,13 @@ function setMeta(property: string, content: string) {
   meta.setAttribute("content", content);
 }
 
-export function SolutionsPage({ onRequestAudit }: SolutionsPageProps) {
+export function SolutionsPage() {
+  const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+
+  const handleOpenAudit = () => {
+    setIsAuditModalOpen(true);
+  };
+
   useEffect(() => {
     document.title = "EV Charging Solutions for Indian Properties | EbeeCharge";
 
@@ -231,8 +237,10 @@ export function SolutionsPage({ onRequestAudit }: SolutionsPageProps) {
   }, []);
 
   return (
-    <main className="flex-1">
-      <section className="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-28 border-b border-neutral-300 bg-transparent">
+    <div className="min-h-screen bg-transparent text-neutral-800 flex flex-col font-body selection:bg-primary-500 selection:text-neutral-900">
+      <Header onRequestAudit={handleOpenAudit} />
+      <main className="flex-1">
+        <section className="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-28 border-b border-neutral-300 bg-transparent">
         <div className="absolute top-0 left-0 w-full h-[760px] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(242,221,52,0.16),rgba(255,255,255,0))] pointer-events-none z-0" />
         <div className="absolute top-1/4 left-1/4 w-[620px] h-[620px] bg-primary-300/20 blur-[140px] rounded-full pointer-events-none mix-blend-multiply z-0" />
         <div className="absolute bottom-0 right-1/4 w-[720px] h-[720px] bg-primary-200/30 blur-[150px] rounded-full pointer-events-none mix-blend-multiply z-0" />
@@ -273,7 +281,7 @@ export function SolutionsPage({ onRequestAudit }: SolutionsPageProps) {
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2 sm:items-center sm:justify-center lg:justify-start">
                 <motion.button
-                  onClick={onRequestAudit}
+                  onClick={handleOpenAudit}
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative px-9 py-5 bg-gradient-to-r from-primary-400 to-primary-500 text-neutral-950 font-black text-[14px] rounded-2xl tracking-wider uppercase transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(242,221,52,0.6),inset_0_2px_0_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-10px_rgba(242,221,52,0.8),inset_0_2px_0_rgba(255,255,255,0.6)] flex items-center justify-center gap-3 leading-none overflow-hidden border border-primary-300/50"
@@ -700,7 +708,7 @@ export function SolutionsPage({ onRequestAudit }: SolutionsPageProps) {
               Ebee maps your load capacity, parking layout, Smart DB count, SLD route, billing model, and installation roadmap before a single socket goes live.
             </p>
             <motion.button
-              onClick={onRequestAudit}
+              onClick={handleOpenAudit}
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="group relative mt-8 inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-primary-300/50 bg-gradient-to-r from-primary-400 to-primary-500 px-9 py-5 text-[13px] font-black uppercase tracking-wider text-neutral-950 shadow-[0_15px_35px_-10px_rgba(242,221,52,0.65)]"
@@ -712,6 +720,16 @@ export function SolutionsPage({ onRequestAudit }: SolutionsPageProps) {
           </motion.div>
         </div>
       </section>
-    </main>
+      </main>
+
+      <Footer onRequestAudit={handleOpenAudit} />
+
+      <FeasibilityModal
+        isOpen={isAuditModalOpen}
+        onClose={() => setIsAuditModalOpen(false)}
+        initialPropertyName=""
+        initialEmail=""
+      />
+    </div>
   );
 }

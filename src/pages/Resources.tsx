@@ -344,7 +344,7 @@ export default function Resources() {
           </div>
         </section>
 
-        <section id="featured-content" className="py-20 bg-white border-b border-neutral-200/50">
+        <section id="featured-content" className="py-20 bg-transparent border-b border-neutral-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10 max-w-3xl">
               <p className="text-[11px] font-black uppercase tracking-wider text-primary-600">

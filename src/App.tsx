@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import NetworkChargingMap from "./pages/NetworkChargingMap";
 import Resources from "./pages/Resources";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/blog/BlogDetail";
@@ -11,7 +10,6 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/network" element={<NetworkChargingMap />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/resources/ev-guides" element={<Resources />} />
       <Route path="/resources/faq" element={<Resources />} />
