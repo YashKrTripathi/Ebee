@@ -44,7 +44,7 @@ const navItems = [
     ],
   },
   { label: "Case Studies", href: "/#case-studies" },
-  { label: "About Us", href: "/#about-us" },
+  { label: "About Us", href: "/about-us" },
 ];
 
 interface NavbarProps {

@@ -1,9 +1,10 @@
-﻿import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NetworkChargingMap from "./pages/NetworkChargingMap";
 import Resources from "./pages/Resources";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/blog/BlogDetail";
+import AboutUs from "./pages/AboutUs";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Route path="/faq" element={<Resources />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogDetail />} />
+      <Route path="/about-us" element={<AboutUs />} />
     </Routes>
   );
 }
