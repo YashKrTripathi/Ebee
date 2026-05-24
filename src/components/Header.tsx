@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 import { ArrowUpRight, Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -31,11 +32,25 @@ const navItems = [
       { label: "For Commercial", href: "#commercial" }
     ]
   },
-  { label: "Software Platform", href: "#software-platform" },
+  {
+    label: "Software Platform",
+    href: "/software-platform",
+    options: [
+      { label: "WhatsApp Integration", href: "/software-platform#whatsapp-integration" },
+      { label: "UPI Payment System", href: "/software-platform#upi-payment-system" },
+      { label: "Smart Dashboard", href: "/software-platform#smart-dashboard" },
+    ]
+  },
   { label: "Network", href: "#network" },
   { label: "Resources", href: "#resources" },
   { label: "Case Studies", href: "#case-studies" },
   { label: "About Us", href: "#about-us" },
+];
+
+const softwarePlatformSectionIds = [
+  "whatsapp-integration",
+  "upi-payment-system",
+  "smart-dashboard",
 ];
 
 interface NavbarProps {
@@ -49,6 +64,7 @@ interface HeaderProps {
 export function Navbar({ onContactClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
+  const [activePlatformSection, setActivePlatformSection] = useState<string | null>(null);
   const [indicator, setIndicator] = useState({
     left: 0,
     width: 0,
@@ -71,6 +87,69 @@ export function Navbar({ onContactClick }: NavbarProps) {
     setIsMenuOpen(false);
     onContactClick?.();
   };
+
+  const scrollToTarget = (id: string) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const headerHeight = document.querySelector("header")?.getBoundingClientRect().height ?? 0;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+    const offset = headerHeight + 28;
+
+    window.scrollTo({
+      top: Math.max(targetTop - offset, 0),
+      behavior: "smooth",
+    });
+  };
+
+  const handleNavLinkClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsMenuOpen(false);
+    setHoveredNav(null);
+
+    if (!href.startsWith("/software-platform#")) return;
+
+    const id = href.split("#")[1];
+    if (!id) return;
+
+    if (window.location.pathname === "/software-platform") {
+      event.preventDefault();
+      window.history.pushState(null, "", href);
+      window.setTimeout(() => scrollToTarget(id), 40);
+      setActivePlatformSection(id);
+    }
+  };
+
+  useEffect(() => {
+    if (window.location.pathname !== "/software-platform") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleEntry?.target.id) {
+          setActivePlatformSection(visibleEntry.target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-28% 0px -48% 0px",
+        threshold: [0.12, 0.28, 0.45, 0.65],
+      }
+    );
+
+    softwarePlatformSectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    if (window.location.hash) {
+      setActivePlatformSection(window.location.hash.replace("#", ""));
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 w-full pt-4 sm:pt-6 font-body pointer-events-none">
@@ -116,6 +195,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
               >
                 <a
                   href={item.href}
+                  onClick={(event) => handleNavLinkClick(event, item.href)}
                   className="group flex items-center gap-1 shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-[13px] font-bold text-neutral-600 outline-none transition-colors duration-300 hover:text-neutral-900"
                 >
                   <span>{item.label}</span>
@@ -135,15 +215,24 @@ export function Navbar({ onContactClick }: NavbarProps) {
                         transition={{ duration: 0.2 }}
                         className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 rounded-2xl bg-white/90 backdrop-blur-xl shadow-xl border border-neutral-200/60 p-2 z-50 flex flex-col gap-1"
                       >
-                        {item.options.map((opt) => (
-                          <a 
-                            key={opt.label} 
-                            href={opt.href}
-                            className="px-4 py-2 text-sm font-semibold text-neutral-600 hover:bg-primary-500/10 hover:text-primary-600 rounded-xl transition-colors"
-                          >
-                            {opt.label}
-                          </a>
-                        ))}
+                        {item.options.map((opt) => {
+                          const isActivePlatformOption = opt.href.endsWith(`#${activePlatformSection}`);
+
+                          return (
+                            <a
+                              key={opt.label}
+                              href={opt.href}
+                              onClick={(event) => handleNavLinkClick(event, opt.href)}
+                              className={`px-4 py-2 text-sm font-semibold rounded-xl transition-colors ${
+                                isActivePlatformOption
+                                  ? "bg-primary-500/15 text-primary-700"
+                                  : "text-neutral-600 hover:bg-primary-500/10 hover:text-primary-600"
+                              }`}
+                            >
+                              {opt.label}
+                            </a>
+                          );
+                        })}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -203,17 +292,39 @@ export function Navbar({ onContactClick }: NavbarProps) {
                 {/* Links Capsule */}
                 <nav className="bg-[#15171A] rounded-3xl shadow-2xl border border-white/10 flex flex-col overflow-hidden pointer-events-auto">
                   {navItems.map((item, index) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`px-6 py-5 text-xs sm:text-sm font-bold tracking-[0.15em] text-white/80 hover:text-white hover:bg-white/5 transition-colors flex items-center justify-between group ${
-                        index !== navItems.length - 1 ? 'border-b border-white/5' : ''
-                      }`}
-                    >
-                      <span className="uppercase">{item.label}</span>
-                      <ChevronDown className="w-4 h-4 text-white/30 -rotate-90 group-hover:text-primary-500 transition-colors" />
-                    </a>
+                    <div key={item.label} className={index !== navItems.length - 1 ? 'border-b border-white/5' : ''}>
+                      <a
+                        href={item.href}
+                        onClick={(event) => handleNavLinkClick(event, item.href)}
+                        className="px-6 py-5 text-xs sm:text-sm font-bold tracking-[0.15em] text-white/80 hover:text-white hover:bg-white/5 transition-colors flex items-center justify-between group"
+                      >
+                        <span className="uppercase">{item.label}</span>
+                        <ChevronDown className="w-4 h-4 text-white/30 -rotate-90 group-hover:text-primary-500 transition-colors" />
+                      </a>
+
+                      {item.label === "Software Platform" && item.options && (
+                        <div className="grid grid-cols-1 gap-1 px-4 pb-4">
+                          {item.options.map((opt) => {
+                            const isActivePlatformOption = opt.href.endsWith(`#${activePlatformSection}`);
+
+                            return (
+                              <a
+                                key={opt.label}
+                                href={opt.href}
+                                onClick={(event) => handleNavLinkClick(event, opt.href)}
+                                className={`rounded-2xl px-4 py-3 text-[11px] font-black uppercase tracking-[0.12em] transition-colors ${
+                                  isActivePlatformOption
+                                    ? "bg-primary-500 text-neutral-950"
+                                    : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-primary-500"
+                                }`}
+                              >
+                                {opt.label}
+                              </a>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </nav>
                 

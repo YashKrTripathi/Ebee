@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Play, ClipboardCheck, ArrowRight, ShieldAlert, Award, Star, ChevronRight, Zap } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -10,8 +10,9 @@ import { Footer } from "./components/Footer";
 import { WhatsAppSimulator } from "./components/WhatsAppSimulator";
 import { FeasibilityModal } from "./components/FeasibilityModal";
 import { SimulatorModal } from "./components/SimulatorModal";
+import { SoftwarePlatform } from "./pages/SoftwarePlatform";
 
-export default function App() {
+function HomePage() {
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [isSimulatorModalOpen, setIsSimulatorModalOpen] = useState(false);
   const [modalPreloadName, setModalPreloadName] = useState("");
@@ -246,4 +247,23 @@ export default function App() {
 
     </div>
   );
+}
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<"home" | "software-platform">("home");
+
+  useEffect(() => {
+    const checkRoute = () => {
+      const isSoftwarePlatform =
+        window.location.pathname.includes("software-platform") ||
+        window.location.hash.includes("software-platform");
+      setCurrentPage(isSoftwarePlatform ? "software-platform" : "home");
+    };
+
+    checkRoute();
+    window.addEventListener("hashchange", checkRoute);
+    return () => window.removeEventListener("hashchange", checkRoute);
+  }, []);
+
+  return currentPage === "software-platform" ? <SoftwarePlatform /> : <HomePage />;
 }
