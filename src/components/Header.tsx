@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { 
     label: "Home", 
-    href: "#",
+    href: "/",
     options: [
-      { label: "Hero", href: "#hero" },
-      { label: "Why ebee", href: "#why-ebee" },
-      { label: "Signature Journey", href: "#journey" },
-      { label: "Live Stats", href: "#live-stats" }
+      { label: "Hero", href: "/#hero" },
+      { label: "Why ebee", href: "/#why-ebee" },
+      { label: "Signature Journey", href: "/#journey" },
+      { label: "Live Stats", href: "/#live-stats" }
     ]
   },
   { 
@@ -35,7 +35,7 @@ const navItems = [
   { label: "Network", href: "#network" },
   { label: "Resources", href: "#resources" },
   { label: "Case Studies", href: "#case-studies" },
-  { label: "About Us", href: "#about-us" },
+  { label: "About Us", href: "/about-us" },
 ];
 
 interface NavbarProps {
@@ -79,7 +79,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
         {/* DESKTOP LAYOUT (xl and up) */}
         <div className="hidden xl:flex items-center justify-between pointer-events-auto">
           {/* LEFT: Logo Text */}
-          <a href="#" aria-label="ebee home" className="group flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5">
+          <a href="/" aria-label="ebee home" className="group flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5">
             <span className="text-3xl font-black text-neutral-900 tracking-tighter">ebee.</span>
           </a>
 
@@ -166,7 +166,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
 
         {/* MOBILE LAYOUT CAPSULE (hidden on xl and up) */}
         <div className="relative z-50 xl:hidden flex items-center justify-between bg-white/95 backdrop-blur-xl rounded-full pl-6 pr-3 py-3 shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-neutral-200 pointer-events-auto">
-          <a href="#" aria-label="ebee home" className="flex items-center">
+          <a href="/" aria-label="ebee home" className="flex items-center">
             <span className="text-2xl font-black text-neutral-900 tracking-tighter">ebee.</span>
           </a>
           <button

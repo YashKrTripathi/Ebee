@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Play, ClipboardCheck, ArrowRight, ShieldAlert, Award, Star, ChevronRight, Zap } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -10,12 +10,37 @@ import { Footer } from "./components/Footer";
 import { WhatsAppSimulator } from "./components/WhatsAppSimulator";
 import { FeasibilityModal } from "./components/FeasibilityModal";
 import { SimulatorModal } from "./components/SimulatorModal";
+import AboutUs from "./pages/AboutUs";
+
+function getCurrentPage() {
+  const pathname = window.location.pathname.replace(/\/$/, "");
+  const hash = window.location.hash.toLowerCase();
+
+  if (pathname === "/about-us" || hash === "#about-us") {
+    return "about-us";
+  }
+
+  return "home";
+}
 
 export default function App() {
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [isSimulatorModalOpen, setIsSimulatorModalOpen] = useState(false);
   const [modalPreloadName, setModalPreloadName] = useState("");
   const [modalPreloadEmail, setModalPreloadEmail] = useState("");
+  const [currentPage, setCurrentPage] = useState(getCurrentPage);
+
+  useEffect(() => {
+    const handleRouteChange = () => setCurrentPage(getCurrentPage());
+
+    window.addEventListener("hashchange", handleRouteChange);
+    window.addEventListener("popstate", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleRouteChange);
+      window.removeEventListener("popstate", handleRouteChange);
+    };
+  }, []);
 
   const handleOpenGeneralAudit = () => {
     setModalPreloadName("");
@@ -33,6 +58,10 @@ export default function App() {
       }, 1800);
     }
   };
+
+  if (currentPage === "about-us") {
+    return <AboutUs />;
+  }
 
   return (
     <div className="min-h-screen bg-transparent text-neutral-800 flex flex-col font-body selection:bg-primary-500 selection:text-neutral-900">

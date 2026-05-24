@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, type MouseEvent as ReactMouseEvent, type TouchEvent as ReactTouchEvent } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { MoveHorizontal } from "lucide-react";
 
@@ -6,10 +6,10 @@ export function ComparisonSlider() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPos, setSliderPos] = useState(50); // percentage
 
-  const handleDrag = (e: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
+  const handleDrag = (e: ReactMouseEvent | ReactTouchEvent | MouseEvent | TouchEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const clientX = "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    const clientX = "touches" in e ? e.touches[0].clientX : (e as ReactMouseEvent).clientX;
     const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
     setSliderPos((x / rect.width) * 100);
   };
