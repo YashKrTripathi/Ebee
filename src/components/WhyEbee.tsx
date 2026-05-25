@@ -116,7 +116,7 @@ export function WhyEbee() {
           transition={{ duration: 0.8 }}
           className="max-w-2xl mx-auto mb-10 md:mb-20 text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/50 border border-primary-200/50 backdrop-blur-sm mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-100/50 border border-primary-200/50 backdrop-blur-sm mb-6 shadow-sm">
              <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
              <span className="text-[11px] font-bold text-primary-700 uppercase tracking-widest leading-none">Designed for human simplicity</span>
           </div>
@@ -196,10 +196,10 @@ export function WhyEbee() {
                 className={`relative flex flex-col group cursor-grab ${isEven ? 'md:mt-0 md:-translate-y-10' : 'md:mt-0 md:translate-y-10'}`}
               >
                 {/* Glow Backdrop */}
-                <div className="absolute inset-0 bg-primary-400/20 rounded-[2.5rem] md:rounded-[3rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform scale-95 group-hover:scale-105 z-0"></div>
+                <div className="absolute inset-0 bg-primary-400/20 -[2.5rem] md:-[3rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform scale-95 group-hover:scale-105 z-0"></div>
                 
                 {/* Organic Card Body */}
-                <div className="relative bg-[#FEFAF7]/95 backdrop-blur-xl rounded-3xl sm:rounded-[2.5rem] md:rounded-[3rem] p-4 sm:p-8 md:p-10 border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.03)] flex flex-col z-10 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(242,221,52,0.3)] group-hover:border-white group-hover:bg-white h-full">
+                <div className="relative bg-[#FEFAF7]/95 backdrop-blur-xl sm:-[2.5rem] md:-[3rem] p-4 sm:p-8 md:p-10 border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.03)] flex flex-col z-10 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(242,221,52,0.3)] group-hover:border-white group-hover:bg-white h-full">
                   
                   {/* Prominent Circular Icon Node */}
                   <div className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-white to-primary-50 flex items-center justify-center mb-3 sm:mb-6 shadow-[0_8px_20px_rgba(242,221,52,0.2)] border border-white group-hover:scale-110 transition-transform duration-500 ease-out">

@@ -13,7 +13,7 @@ export function LiveEnergyVisualization() {
         </p>
       </div>
 
-      <div className="w-full h-[400px] md:h-[500px] bg-neutral-900 rounded-[32px] border border-neutral-800 relative overflow-hidden flex items-center justify-center p-8 shadow-2xl">
+      <div className="w-full h-[400px] md:h-[500px] bg-neutral-900 -[32px] border border-neutral-800 relative overflow-hidden flex items-center justify-center p-8 shadow-2xl">
         {/* Background Grid */}
         <div 
           className="absolute inset-0 opacity-10"

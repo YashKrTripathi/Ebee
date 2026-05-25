@@ -27,7 +27,7 @@ export function ComparisonSlider() {
 
       <div 
         ref={containerRef}
-        className="relative w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden cursor-ew-resize select-none bg-neutral-900 shadow-2xl"
+        className="relative w-full h-[500px] md:h-[600px] overflow-hidden cursor-ew-resize select-none bg-neutral-900 shadow-2xl"
         onMouseMove={(e) => { if (e.buttons === 1) handleDrag(e) }}
         onTouchMove={handleDrag}
         onMouseDown={handleDrag}
@@ -37,15 +37,15 @@ export function ComparisonSlider() {
           <div className="w-full max-w-sm absolute right-8 top-1/2 -translate-y-1/2">
             <h3 className="text-4xl font-black text-primary-600 mb-6 uppercase tracking-tight">ebee Smart Infra</h3>
             <div className="space-y-6">
-              <div className="bg-white p-4 rounded-xl shadow-sm border border-primary-200">
+              <div className="bg-white p-4 shadow-sm border border-primary-200">
                 <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">Architecture</p>
                 <p className="font-bold text-neutral-800">1 Centralized DB Loop</p>
               </div>
-              <div className="bg-white p-4 rounded-xl shadow-sm border border-primary-200">
+              <div className="bg-white p-4 shadow-sm border border-primary-200">
                 <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">Cabling Required</p>
                 <p className="font-bold text-neutral-800">Minimal Single Run</p>
               </div>
-              <div className="bg-white p-4 rounded-xl shadow-sm border border-primary-200">
+              <div className="bg-white p-4 shadow-sm border border-primary-200">
                 <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">Load Management</p>
                 <p className="font-bold text-neutral-800">Dynamic AI Balancing</p>
               </div>
@@ -63,15 +63,15 @@ export function ComparisonSlider() {
           <div className="w-[80vw] max-w-[800px] absolute left-8 top-1/2 -translate-y-1/2">
             <h3 className="text-4xl font-black text-neutral-400 mb-6 uppercase tracking-tight w-64">Legacy Setup</h3>
             <div className="space-y-6 w-64">
-              <div className="bg-neutral-800 p-4 rounded-xl border border-neutral-700">
+              <div className="bg-neutral-800 p-4 border border-neutral-700">
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">Architecture</p>
                 <p className="font-bold text-neutral-200">32 Individual Meters</p>
               </div>
-              <div className="bg-neutral-800 p-4 rounded-xl border border-neutral-700">
+              <div className="bg-neutral-800 p-4 border border-neutral-700">
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">Cabling Required</p>
                 <p className="font-bold text-neutral-200">Massive Spaghetti Mess</p>
               </div>
-              <div className="bg-neutral-800 p-4 rounded-xl border border-neutral-700">
+              <div className="bg-neutral-800 p-4 border border-neutral-700">
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-1">Load Management</p>
                 <p className="font-bold text-neutral-200">Dumb Static Limits</p>
               </div>
