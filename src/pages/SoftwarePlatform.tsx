@@ -1,23 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import {
-  Activity,
-  ArrowRight,
-  BatteryCharging,
-  CheckCircle2,
-  CreditCard,
-  Gauge,
-  LockKeyhole,
-  MessageCircle,
-  MonitorDot,
-  PlugZap,
-  QrCode,
-  RadioTower,
-  ReceiptText,
-  ShieldCheck,
-  Thermometer,
-  Zap,
-} from "lucide-react";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 import CountUp from "react-countup";
 
 import { FeasibilityModal } from "../components/FeasibilityModal";
@@ -35,41 +18,6 @@ const stagger: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.08 } },
 };
-
-const whatsappSteps = [
-  { icon: MessageCircle, title: "Send booth ID", text: "Resident texts booth number to Ebee's WhatsApp account." },
-  { icon: QrCode, title: "View details", text: "Booth status, pricing, and available duration displayed instantly." },
-  { icon: CreditCard, title: "Confirm payment", text: "User confirms session and UPI payment is initiated." },
-  { icon: Zap, title: "Charging unlocks", text: "Socket powers on after payment verification." },
-];
-
-const whatsappBubbles = [
-  { side: "right", text: "B2-18" },
-  { side: "left", text: "Which booth? Enter booth ID to check status and pricing" },
-  { side: "right", text: "Booth B2-18 selected" },
-  { side: "left", text: "Booth details - Status: Available, Power: 7.4kW, Duration: 2 hours max" },
-  { side: "left", text: "Estimated consumption: 11.2 kWh @ ₹8/kWh = ₹89.6" },
-  { side: "right", text: "Start charging" },
-  { side: "left", text: "Payment required. Tap to pay via UPI" },
-  { side: "right", text: "Payment confirmed" },
-  { side: "left", text: "✓ Charging started. Real-time updates will arrive here." },
-];
-
-const socketStates = [
-  { bay: "A12", state: "Charging", power: "7.4kW", active: true },
-  { bay: "A15", state: "Queued", power: "5.2kW", active: false },
-  { bay: "B02", state: "Paid", power: "3.6kW", active: true },
-  { bay: "B08", state: "Idle", power: "0.0kW", active: false },
-  { bay: "C04", state: "Thermal OK", power: "6.8kW", active: true },
-  { bay: "C11", state: "Locked", power: "0.0kW", active: false },
-];
-
-const activityFeed = [
-  "UPI payment verified for Bay A12",
-  "Smart DB shifted load from Phase R to Y",
-  "Thermal sensor normal across 32 sockets",
-  "WhatsApp receipt sent to resident",
-];
 
 function useSoftwarePlatformSeo() {
   useEffect(() => {
@@ -114,673 +62,240 @@ interface SoftwarePlatformProps {
   onRequestAudit?: () => void;
 }
 
-function WhatsAppSection() {
+function WhatsAppIntegrationSection() {
   const [activeStep, setActiveStep] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Auto-advance timeline when section is visible
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev < 4 ? prev + 1 : 0));
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
-  // Auto-advance when visible
-  useEffect(() => {
-    if (!isVisible) return;
+  const steps = [
+    "Scan QR Code",
+    "Open WhatsApp",
+    "Set Up Session",
+    "Pay via UPI",
+    "Manage Charging Session"
+  ];
 
-    const timer = setInterval(() => {
-      setActiveStep((prev) => (prev < 5 ? prev + 1 : 0));
-    }, 2000);
-
-    return () => clearInterval(timer);
-  }, [isVisible]);
-
-  const chargingJourney = [
-    { title: "Park Vehicle", icon: "🚗", color: "from-blue-500 to-cyan-500" },
-    { title: "Scan QR", icon: "📲", color: "from-purple-500 to-pink-500" },
-    { title: "Message Sent", icon: "💬", color: "from-green-500 to-emerald-500" },
-    { title: "Verify Payment", icon: "✓", color: "from-yellow-500 to-orange-500" },
-    { title: "Socket Unlocks", icon: "🔓", color: "from-primary-500 to-primary-400" },
-    { title: "Charging Starts", icon: "⚡", color: "from-primary-600 to-yellow-500" },
+  const features = [
+    "No App Required",
+    "No Wallet Needed",
+    "UPI Native",
+    "Instant Access",
+    "Secure Payments",
+    "Zero Learning Curve"
   ];
 
   return (
     <motion.section
-      ref={sectionRef}
       id="whatsapp-integration"
       initial="hidden"
       whileInView="visible"
       viewport={viewport}
       variants={stagger}
-      className="scroll-mt-36 rounded-[2rem] border border-white/70 bg-gradient-to-br from-[#FEFAF7]/95 via-[#FDF2E5]/90 to-[#FEFAF7]/95 p-5 shadow-[0_20px_50px_-25px_rgba(23,23,20,0.28)] target:border-primary-400 target:shadow-[0_24px_52px_-16px_rgba(242,221,52,0.55)] sm:p-7 overflow-hidden"
+      className="scroll-mt-36 rounded-[2rem] border border-white/70 bg-gradient-to-br from-[#FEFAF7]/95 via-[#FDF2E5]/90 to-[#FEFAF7]/95 p-5 shadow-[0_20px_50px_-25px_rgba(23,23,20,0.28)] sm:p-7 overflow-hidden relative"
     >
-      <motion.div className="absolute inset-0 overflow-hidden rounded-[2rem] pointer-events-none">
-        <motion.div
-          className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary-300/20 blur-3xl"
-          animate={{ x: [0, 40, 0], y: [0, -40, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-primary-200/15 blur-3xl"
-          animate={{ x: [0, -40, 0], y: [0, 40, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-      </motion.div>
+      <div className="absolute inset-0 overflow-hidden rounded-[2rem] pointer-events-none">
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary-300/20 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-primary-200/15 blur-3xl" />
+      </div>
 
-      <div className="relative z-10">
-        <motion.div variants={fadeUp} className="mb-12 flex items-center justify-between gap-4">
-          <div>
-            <p className="text-[11px] font-black uppercase tracking-widest text-primary-700">01 / WhatsApp Integration</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-neutral-950 md:text-5xl">Watch your charging journey <span className="text-primary-600">unfold</span> in real-time</h2>
-            <p className="mt-4 max-w-xl text-sm font-medium text-neutral-600">From parking bay to live charging in seconds, powered by WhatsApp and Smart DB verification.</p>
-          </div>
-          <div className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-2xl sm:flex">
-            <MessageCircle className="h-7 w-7" />
-          </div>
-        </motion.div>
-
-        {/* Cinematic Charging Journey Timeline */}
-        <motion.div variants={fadeUp} className="mb-12 relative">
-          {/* Animated connecting line */}
-          <div className="absolute top-8 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
-          <svg className="absolute top-0 left-0 w-full h-20 overflow-visible pointer-events-none" style={{ mixBlendMode: "multiply" }}>
-            <motion.path
-              d={`M 0 32 Q ${typeof window !== "undefined" ? window.innerWidth / 6 : 100} 8, ${typeof window !== "undefined" ? window.innerWidth / 3 : 200} 32 T ${typeof window !== "undefined" ? (window.innerWidth * 2) / 3 : 400} 32 T ${typeof window !== "undefined" ? window.innerWidth : 800} 32`}
-              stroke="url(#gradient)"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style={{ stopColor: "rgb(242,221,52)", stopOpacity: 0 }} />
-                <stop offset="50%" style={{ stopColor: "rgb(242,221,52)", stopOpacity: 1 }} />
-                <stop offset="100%" style={{ stopColor: "rgb(242,221,52)", stopOpacity: 0 }} />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {/* Journey Steps */}
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-            {chargingJourney.map((step, index) => (
-              <motion.div
-                key={step.title}
-                variants={fadeUp}
-                custom={index}
-                whileHover={{ scale: 1.05 }}
-                className="relative"
-              >
-                <motion.div
-                  className="relative flex flex-col items-center gap-3 pt-4"
-                  animate={activeStep === index ? { y: -4 } : {}}
-                >
-                  {/* Animated Node */}
-                  <motion.div
-                    className={`h-16 w-16 rounded-full flex items-center justify-center text-2xl shadow-lg relative`}
-                    style={{
-                      background: index <= activeStep
-                        ? "linear-gradient(135deg, rgb(242,221,52), rgb(251,191,36))"
-                        : "linear-gradient(135deg, rgb(229,231,235), rgb(209,213,219))",
-                    }}
-                    animate={{
-                      boxShadow: index <= activeStep
-                        ? ["0 0 0 rgba(242,221,52,0)", "0 0 20px rgba(242,221,52,0.6)", "0 0 0 rgba(242,221,52,0)"]
-                        : "0 4px 12px rgba(0,0,0,0.1)",
-                    }}
-                    transition={{ duration: 2.5, repeat: index <= activeStep ? Infinity : 0 }}
-                  >
-                    {step.icon}
-                    {index <= activeStep && (
-                      <motion.div
-                        className="absolute inset-0 rounded-full border-2 border-primary-500"
-                        initial={{ scale: 0.8, opacity: 1 }}
-                        animate={{ scale: 1.4, opacity: 0 }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                    )}
-                  </motion.div>
-
-                  {/* Step Label */}
-                  <motion.div
-                    className="text-center"
-                    animate={index <= activeStep ? { opacity: 1 } : { opacity: 0.6 }}
-                  >
-                    <p className="text-xs font-black uppercase tracking-wider text-primary-700">Step {index + 1}</p>
-                    <p className="text-sm font-bold text-neutral-900">{step.title}</p>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Dual Layout: Phone + Visualization */}
-        <motion.div variants={fadeUp} className="grid gap-8 lg:grid-cols-2 items-center">
-          {/* Left: Charging Bay Visualization */}
-          <div className="relative h-96 rounded-3xl border border-neutral-200 bg-gradient-to-br from-white via-neutral-50 to-white overflow-hidden shadow-2xl">
-            {/* EV Bay Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-sky-100 to-neutral-100 opacity-40" />
+      <div className="relative z-10 grid gap-12 lg:grid-cols-2 items-center">
+        {/* Left: Phone Mockup */}
+        <div className="flex justify-center items-center relative p-4">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(242,221,52,0.25)_0%,transparent_65%)] scale-[1.5] blur-3xl pointer-events-none z-0"></div>
+          
+          <div className="relative mx-auto max-w-[340px] w-full rounded-[56px] shadow-[0_0_0_2px_rgba(255,255,255,0.3)_inset,0_50px_100px_-20px_rgba(0,0,0,1),0_30px_60px_-30px_rgba(0,0,0,0.8),0_0_80px_rgba(56,189,248,0.4),-20px_-20px_60px_rgba(255,255,255,0.05)] group z-30 transition-transform duration-700 hover:-translate-y-2">
             
-            {/* Animated EV Car */}
-            <motion.div
-              className="absolute top-1/4 left-1/4 text-6xl"
-              animate={{
-                x: activeStep >= 0 ? [0, 20, 0] : 0,
-                y: activeStep >= 0 ? [0, -10, 0] : 0,
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              🚗
-            </motion.div>
+            {/* Hardware Buttons */}
+            <div className="absolute top-28 -left-1 w-1 h-8 bg-gradient-to-r from-[#d1d1d6] to-[#8e8e93] rounded-l-md shadow-[-2px_0_4px_rgba(0,0,0,0.8),inset_1px_0_1px_rgba(255,255,255,0.8)]"></div>
+            <div className="absolute top-44 -left-1 w-1 h-14 bg-gradient-to-r from-[#d1d1d6] to-[#8e8e93] rounded-l-md shadow-[-2px_0_4px_rgba(0,0,0,0.8),inset_1px_0_1px_rgba(255,255,255,0.8)]"></div>
+            <div className="absolute top-64 -left-1 w-1 h-14 bg-gradient-to-r from-[#d1d1d6] to-[#8e8e93] rounded-l-md shadow-[-2px_0_4px_rgba(0,0,0,0.8),inset_1px_0_1px_rgba(255,255,255,0.8)]"></div>
+            <div className="absolute top-48 -right-1.5 w-1.5 h-20 bg-gradient-to-l from-[#d1d1d6] to-[#8e8e93] rounded-r-md shadow-[2px_0_4px_rgba(0,0,0,0.8),inset_-1px_0_1px_rgba(255,255,255,0.8)] z-0"></div>
 
-            {/* Charging Socket */}
-            <motion.div
-              className="absolute bottom-1/4 right-1/4 text-5xl"
-              animate={{
-                scale: activeStep >= 4 ? [1, 1.1, 1] : 1,
-                boxShadow: activeStep >= 4 ? ["0 0 0 rgba(242,221,52,0)", "0 0 30px rgba(242,221,52,0.8)", "0 0 0 rgba(242,221,52,0)"] : "0 0 0 rgba(0,0,0,0)",
-              }}
-              transition={{ duration: 1.5, repeat: activeStep >= 4 ? Infinity : 0 }}
-            >
-              ⚡
-            </motion.div>
-
-            {/* Animated Cable */}
-            {activeStep >= 4 && (
-              <motion.svg
-                className="absolute inset-0 w-full h-full"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-              >
-                <motion.path
-                  d="M 150 180 Q 200 150, 280 200"
-                  stroke="rgb(242,221,52)"
-                  strokeWidth="4"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeDasharray="20,5"
-                  initial={{ strokeDashoffset: 25 }}
-                  animate={{ strokeDashoffset: 0 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                />
-              </motion.svg>
-            )}
-
-            {/* Floating Status Indicators */}
-            <motion.div
-              className="absolute top-6 right-6 rounded-full bg-white border-2 border-primary-500 px-4 py-2 text-xs font-bold text-primary-700 shadow-lg"
-              animate={{
-                y: [0, -8, 0],
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {activeStep >= 5 ? "🔋 Charging" : "Ready"}
-            </motion.div>
-          </div>
-
-          {/* Right: WhatsApp Phone Interface */}
-          <motion.div
-            className="relative"
-            variants={fadeUp}
-          >
-            {/* Premium Phone Frame */}
-            <div className="relative mx-auto max-w-sm overflow-hidden rounded-[2.5rem] border-[12px] border-neutral-900 bg-neutral-900 shadow-2xl">
-              {/* Camera Notch */}
-              <div className="absolute left-1/2 top-0 z-20 h-7 w-28 -translate-x-1/2 rounded-b-3xl bg-neutral-900" />
+            {/* Metallic Titanium Frame */}
+            <div className="absolute inset-0 rounded-[56px] bg-gradient-to-br from-[#e5e5ea] via-[#8e8e93] to-[#d1d1d6] p-[3px] shadow-[inset_0_0_20px_rgba(255,255,255,0.6),inset_0_2px_4px_rgba(255,255,255,0.8)] z-10">
+              <div className="absolute inset-[3px] rounded-[53px] bg-black shadow-[inset_0_0_0_3px_rgba(255,255,255,0.15)]"></div>
+            </div>
+            
+            {/* Screen container */}
+            <div className="relative bg-white rounded-[52px] border-[6px] border-black overflow-hidden m-[3px] h-[640px] flex flex-col z-20">
               
-              {/* Phone Screen */}
-              <div className="relative flex flex-col bg-white h-[600px]">
-                {/* WhatsApp Header */}
-                <div className="flex items-center gap-3 bg-[#25D366] px-4 py-3 pt-6 flex-shrink-0">
-                  <motion.div
-                    className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0"
-                    animate={{ scale: [1, 1.1, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <MessageCircle className="text-white h-5 w-5" />
-                  </motion.div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-bold text-white truncate">Ebee Charging</p>
-                    <p className="text-[10px] font-medium text-white/80">
-                      {activeStep >= 5 ? "Charging live" : "responding..."}
-                    </p>
-                  </div>
+              {/* Dynamic Island / Notch */}
+              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 h-7 w-32 bg-black rounded-full z-40 flex items-center justify-between px-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.8)] border border-white/10">
+                <div className="w-3 h-3 rounded-full bg-[#1a1d24] flex items-center justify-center border border-white/10">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary-700/80"></div>
                 </div>
+                <div className="w-1.5 h-1.5 rounded-full bg-primary-400/40 blur-[1px]"></div>
+              </div>
 
-                {/* Chat Messages */}
-                <motion.div 
-                  className="flex-1 overflow-hidden space-y-2 p-3 bg-white flex flex-col justify-end"
-                >
-                  <AnimatePresence mode="wait">
-                    {activeStep >= 1 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.35 }}
-                        className="flex justify-end"
-                      >
-                        <div className="bg-[#F2DD34] rounded-lg rounded-br-sm px-3 py-2 max-w-[70%]">
-                          <p className="text-xs font-medium text-neutral-950">Booth B2-18</p>
-                        </div>
-                      </motion.div>
-                    )}
-                    {activeStep >= 2 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.35, delay: 0.12 }}
-                        className="flex justify-start"
-                      >
-                        <div className="bg-[#E5E5EA] rounded-lg rounded-bl-sm px-3 py-2 max-w-[70%]">
-                          <p className="text-xs text-neutral-900">7.4kW • ₹8/kWh • Available now</p>
-                        </div>
-                      </motion.div>
-                    )}
-                    {activeStep >= 3 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.35, delay: 0.24 }}
-                        className="flex justify-end"
-                      >
-                        <div className="bg-[#F2DD34] rounded-lg rounded-br-sm px-3 py-2 max-w-[70%]">
-                          <p className="text-xs font-medium text-neutral-950">Start charging</p>
-                        </div>
-                      </motion.div>
-                    )}
-                    {activeStep >= 4 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.35, delay: 0.36 }}
-                        className="flex justify-start"
-                      >
-                        <div className="bg-[#E5E5EA] rounded-lg rounded-bl-sm px-3 py-2 max-w-[70%]">
-                          <p className="text-xs font-semibold text-green-600">✓ Payment verified</p>
-                        </div>
-                      </motion.div>
-                    )}
-                    {activeStep >= 5 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 12, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.35, delay: 0.48 }}
-                        className="flex justify-start"
-                      >
-                        <div className="bg-[#E5E5EA] rounded-lg rounded-bl-sm px-3 py-2 max-w-[70%]">
-                          <p className="text-xs font-bold text-neutral-900">🔌 Live: 3.2 kWh • ₹25.60 • ETA 1h 45m</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-
-                {/* Input Field */}
-                <div className="border-t border-neutral-200 px-3 py-2 bg-neutral-50 flex items-center gap-2 flex-shrink-0">
-                  <input
-                    type="text"
-                    placeholder="Type a message..."
-                    disabled
-                    className="flex-1 text-xs bg-transparent text-neutral-400 placeholder-neutral-300 outline-none"
-                  />
-                  <motion.button
-                    disabled
-                    className="text-primary-600 opacity-50"
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  >
-                    ↓
-                  </motion.button>
+              {/* Status Bar */}
+              <div className="h-12 w-full flex justify-between items-end px-6 pb-2 text-[12px] font-semibold text-black z-30 shrink-0 bg-white">
+                <span>9:41</span>
+                <div className="flex gap-1.5 items-center text-black">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21L15.6 16.2C14.6 15.4 13.4 15 12 15C10.6 15 9.4 15.4 8.4 16.2L12 21ZM12 3C7.9 3 4.2 4.5 1.2 7L12 21L22.8 7C19.8 4.5 16.1 3 12 3ZM12 11C10.1 11 8.3 11.6 6.8 12.6L12 19L17.2 12.6C15.7 11.6 13.9 11 12 11Z"/></svg>
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21L23.6 5.3C23.1 4.9 18.6 1.5 12 1.5C5.4 1.5 0.9 4.9 0.4 5.3L12 21ZM12 15C10.6 15 9.3 15.5 8.2 16.3L12 21L15.8 16.3C14.7 15.5 13.4 15 12 15Z"/></svg>
+                  <svg className="w-5 h-5 opacity-90" viewBox="0 0 24 24" fill="currentColor"><path d="M17 4H7C5.9 4 5 4.9 5 6V18C5 19.1 5.9 20 7 20H17C18.1 20 19 19.1 19 18V6C19 4.9 18.1 4 17 4ZM17 18H7V6H17V18ZM19 10V14H21V10H19ZM9 8H15V16H9V8Z"/></svg>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </motion.div>
 
-        {/* Auto-advance the timeline */}
-        <motion.div
-          className="h-1"
-          initial={{ width: 0 }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 12, repeat: Infinity }}
-          onAnimationComplete={() => {
-            if (activeStep < 5) {
-              setActiveStep(activeStep + 1);
-            } else {
-              setActiveStep(0);
-            }
-          }}
-        />
-      </div>
-    </motion.section>
-  );
-}
+              {/* Web App UI Header */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-200 bg-white z-10 shrink-0">
+                <button className="text-neutral-600">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+                <span className="font-bold text-neutral-900 text-base">
+                  {activeStep < 4 ? "Set up session" : "Manage Session"}
+                </span>
+                <button className="text-neutral-600">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" /></svg>
+                </button>
+              </div>
 
-function UpiSection() {
-  const [paymentStep, setPaymentStep] = useState(0);
-  
-  const paymentSteps = [
-    { label: "QR Ready", icon: "📱", delay: 0 },
-    { label: "Scanning", icon: "🔍", delay: 1 },
-    { label: "Payment", icon: "₹", delay: 2 },
-    { label: "Processing", icon: "⏳", delay: 3 },
-    { label: "Verified", icon: "✓", delay: 4 },
-    { label: "Unlocked", icon: "🔓", delay: 5 },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPaymentStep((prev) => (prev < paymentSteps.length - 1 ? prev + 1 : 0));
-    }, 1200);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <motion.section
-      id="upi-payment-system"
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewport}
-      variants={stagger}
-      className="scroll-mt-36 rounded-[2rem] border border-white/70 bg-gradient-to-br from-[#FEFAF7]/95 via-[#FDF2E5]/90 to-[#FEFAF7]/95 p-5 shadow-[0_20px_50px_-25px_rgba(23,23,20,0.28)] target:border-primary-400 target:shadow-[0_24px_52px_-16px_rgba(242,221,52,0.55)] sm:p-7 overflow-hidden"
-    >
-      <motion.div className="absolute inset-0 overflow-hidden rounded-[2rem] pointer-events-none">
-        <motion.div
-          className="absolute top-1/2 -right-32 h-96 w-96 rounded-full bg-primary-300/20 blur-3xl"
-          animate={{ x: [0, 60, 0], y: [0, -60, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
-
-      <div className="relative z-10">
-        <motion.div variants={fadeUp} className="mb-12">
-          <p className="text-[11px] font-black uppercase tracking-widest text-primary-700">02 / UPI Payment System</p>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-neutral-950 md:text-5xl">Payments that <span className="text-primary-600">feel magical</span></h2>
-          <p className="mt-4 max-w-2xl text-sm font-medium text-neutral-600">Real UPI verification on Smart DB before socket unlock. No intermediaries, just instant power.</p>
-        </motion.div>
-
-        {/* Main Payment Experience */}
-        <motion.div variants={fadeUp} className="grid gap-8 lg:grid-cols-2 items-center">
-          {/* Left: Payment Flow Description */}
-          <div className="space-y-4">
-            {paymentSteps.map((step, index) => (
-              <motion.div
-                key={step.label}
-                variants={fadeUp}
-                custom={index}
-                className="relative"
-              >
-                <motion.div
-                  className={`rounded-2xl border-2 px-5 py-4 transition-all duration-300 ${
-                    paymentStep >= index
-                      ? "border-primary-400 bg-gradient-to-r from-primary-50 to-transparent shadow-lg shadow-primary-200/50"
-                      : "border-neutral-200 bg-white/50"
-                  }`}
-                  animate={paymentStep === index ? { scale: 1.02, x: 8 } : {}}
-                >
-                  <div className="flex items-center gap-4">
-                    <motion.div
-                      className={`text-3xl flex-shrink-0`}
-                      animate={paymentStep === index ? { scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] } : {}}
-                      transition={{ duration: 0.6 }}
-                    >
-                      {step.icon}
-                    </motion.div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-black uppercase tracking-wider text-primary-700">Step {index + 1}</p>
-                      <p className="text-sm font-bold text-neutral-900 mt-0.5">{step.label}</p>
+              {/* Dynamic Content */}
+              <div className="flex-1 overflow-y-auto bg-white flex flex-col relative px-5 py-6">
+                {activeStep < 4 ? (
+                  <motion.div 
+                    key="setup"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-6 text-[14px] text-neutral-800 h-full flex flex-col"
+                  >
+                    <div>
+                      <p className="mb-2 text-neutral-600">Wallet balance: <span className="text-neutral-900 font-semibold">₹1</span></p>
+                      <p className="text-neutral-600">Approx. Units: <span className="text-neutral-900 font-semibold">1.23</span></p>
                     </div>
-                    {paymentStep >= index && (
-                      <motion.div
-                        initial={{ scale: 0, rotate: -180 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        className="text-primary-600 font-black text-lg"
-                      >
-                        ✓
-                      </motion.div>
-                    )}
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
+                    
+                    <div className="relative mt-2">
+                      <label className="absolute -top-2 left-3 bg-white px-1 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">Amount (₹)</label>
+                      <input type="text" value="10" readOnly className="w-full border-2 border-neutral-300 rounded-[10px] px-4 py-3.5 text-neutral-900 font-medium outline-none" />
+                    </div>
 
-          {/* Right: Premium Phone with Payment UI */}
-          <motion.div className="relative" variants={fadeUp}>
-            <motion.div
-              className="absolute inset-0 rounded-[2.5rem] border-[12px] border-neutral-900 bg-gradient-to-br from-primary-300/20 via-primary-200/10 to-transparent blur-2xl"
-              animate={{ scale: [0.95, 1.05, 0.95] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-
-            {/* Phone Frame */}
-            <div className="relative mx-auto max-w-sm overflow-hidden rounded-[2.5rem] border-[12px] border-neutral-900 bg-neutral-900 shadow-2xl">
-              {/* Notch */}
-              <div className="absolute left-1/2 top-0 z-20 h-7 w-28 -translate-x-1/2 rounded-b-3xl bg-neutral-900" />
-
-              {/* Screen */}
-              <div className="relative flex flex-col bg-white h-[620px]">
-                {/* Status Bar */}
-                <div className="flex items-center justify-between px-4 pt-6 pb-2 text-xs font-semibold text-neutral-900">
-                  <span>9:41</span>
-                  <div className="flex gap-1 text-neutral-600">📶 📡 🔋</div>
-                </div>
-
-                {/* Dynamic Content Based on Payment Step */}
-                <motion.div className="flex-1 overflow-hidden flex flex-col relative">
-                  <AnimatePresence mode="wait">
-                    {paymentStep === 0 && (
-                      <motion.div
-                        key="qr"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex-1 flex flex-col items-center justify-center px-6 text-center"
-                      >
-                        <div className="text-6xl mb-4">📱</div>
-                        <p className="text-xs font-semibold text-neutral-600 mb-4">Ready to scan</p>
-                        <motion.div
-                          className="w-32 h-32 border-4 border-dashed border-primary-400 rounded-xl flex items-center justify-center relative overflow-hidden"
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                        >
-                          <div className="text-4xl">⬜</div>
-                        </motion.div>
-                        <p className="text-[9px] text-neutral-400 mt-4">Point camera at QR code</p>
-                      </motion.div>
-                    )}
-
-                    {paymentStep === 1 && (
-                      <motion.div
-                        key="scanning"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex-1 flex flex-col items-center justify-center px-6 text-center"
-                      >
-                        <div className="relative w-32 h-32 mb-4">
-                          <motion.div
-                            className="absolute inset-0 border-2 border-primary-500 rounded-lg"
-                            animate={{ scale: [0.8, 1.2], opacity: [1, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          />
-                          <div className="absolute inset-4 border-2 border-primary-600 rounded-lg flex items-center justify-center">
-                            <motion.span
-                              animate={{ rotate: 360 }}
-                              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                              className="text-2xl"
-                            >
-                              🔍
-                            </motion.span>
+                    <div className="pt-2 flex-1">
+                      <h3 className="font-bold text-neutral-900 mb-5 text-[15px]">Choose mode</h3>
+                      <div className="space-y-6">
+                        <div className="flex items-center justify-between">
+                          <p className="font-semibold text-neutral-600 text-[14px]">Quick start with wallet</p>
+                          <div className="w-5 h-5 rounded-full border-[2.5px] border-neutral-400"></div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className={`font-semibold text-[14px] ${activeStep === 3 ? "text-neutral-900" : "text-neutral-600"}`}>Top up wallet and start</p>
+                            <p className="text-[12px] text-neutral-400 mt-0.5 font-medium">Wallet is not refundable</p>
+                          </div>
+                          <div className={`w-5 h-5 rounded-full border-[2.5px] flex items-center justify-center ${activeStep === 3 ? "border-[#25D366]" : "border-neutral-400"}`}>
+                            {activeStep === 3 && <div className="w-2.5 h-2.5 rounded-full bg-[#25D366]"></div>}
                           </div>
                         </div>
-                        <p className="text-xs font-semibold text-neutral-900">Scanning...</p>
-                      </motion.div>
-                    )}
-
-                    {paymentStep === 2 && (
-                      <motion.div
-                        key="payment"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex-1 flex flex-col p-6 justify-between"
-                      >
-                        <div>
-                          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-4">Verify Payment</p>
-                          <motion.div
-                            className="bg-gradient-to-br from-primary-50 to-white border-2 border-primary-200 rounded-2xl p-6 mb-4"
-                            animate={{ scale: [0.95, 1.02, 0.95] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          >
-                            <p className="text-3xl font-black text-primary-600">₹284</p>
-                            <p className="text-xs text-neutral-600 mt-2">7.4 kW • 2 hours</p>
-                          </motion.div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className={`font-semibold text-[14px] ${activeStep < 3 ? "text-neutral-900" : "text-neutral-600"}`}>UPI & Others</p>
+                            <p className="text-[12px] text-neutral-400 mt-0.5 font-medium">Unused amount will be refunded</p>
+                          </div>
+                          <div className={`w-5 h-5 rounded-full border-[2.5px] flex items-center justify-center ${activeStep < 3 ? "border-[#25D366]" : "border-neutral-400"}`}>
+                            {activeStep < 3 && <div className="w-2.5 h-2.5 rounded-full bg-[#25D366]"></div>}
+                          </div>
                         </div>
-                        <motion.button
-                          className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-neutral-900 font-bold py-3 rounded-xl text-sm"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          Pay via UPI
-                        </motion.button>
-                      </motion.div>
+                      </div>
+                    </div>
+                    
+                    {activeStep === 3 && (
+                      <div className="mt-auto">
+                        <button className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-bold py-4 rounded-xl text-[15px] transition-colors shadow-sm">
+                          Pay and Start
+                        </button>
+                      </div>
                     )}
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    key="manage"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-6 text-[14px] text-neutral-800 h-full flex flex-col"
+                  >
+                    <div className="space-y-3">
+                      <p className="text-neutral-600">Units Charged: <span className="text-neutral-900 font-semibold">0.01 (Amount: ₹ 0.07)</span></p>
+                      <p className="text-neutral-600">Balance Amount: <span className="text-neutral-900 font-semibold">₹ 10</span></p>
+                    </div>
 
-                    {paymentStep === 3 && (
-                      <motion.div
-                        key="processing"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex-1 flex flex-col items-center justify-center px-6 text-center"
-                      >
-                        <motion.div
-                          className="w-24 h-24 rounded-full border-4 border-primary-200 border-t-primary-600 flex items-center justify-center mb-4"
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        >
-                          <span className="text-3xl">💳</span>
-                        </motion.div>
-                        <p className="text-xs font-semibold text-neutral-900">Processing payment...</p>
-                        <p className="text-[9px] text-neutral-500 mt-2">Verifying with Smart DB</p>
-                      </motion.div>
-                    )}
-
-                    {paymentStep === 4 && (
-                      <motion.div
-                        key="verified"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex-1 flex flex-col items-center justify-center px-6 text-center"
-                      >
-                        <motion.div
-                          className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-4"
-                          animate={{ scale: [1, 1.1, 1] }}
-                          transition={{ duration: 0.6, repeat: 2 }}
-                        >
-                          <motion.span
-                            className="text-4xl"
-                            animate={{ scale: [0, 1, 0.9] }}
-                            transition={{ duration: 0.6, repeat: 2 }}
-                          >
-                            ✓
-                          </motion.span>
-                        </motion.div>
-                        <p className="text-sm font-bold text-green-600 mb-1">Payment Verified!</p>
-                        <p className="text-[9px] text-neutral-600">Socket unlocking...</p>
-                      </motion.div>
-                    )}
-
-                    {paymentStep === 5 && (
-                      <motion.div
-                        key="unlocked"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex-1 flex flex-col items-center justify-center px-6 text-center"
-                      >
-                        <motion.div
-                          className="text-6xl mb-4"
-                          animate={{ y: [0, -10, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          ⚡
-                        </motion.div>
-                        <p className="text-sm font-bold text-neutral-900 mb-4">Charging Started!</p>
-                        <motion.div
-                          className="w-full bg-gradient-to-r from-green-100 to-transparent rounded-lg p-3 border-l-4 border-green-500"
-                          animate={{ x: [0, 4, 0] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        >
-                          <p className="text-[9px] font-semibold text-green-700 text-left">🔋 3.2 kWh • ₹25.60 • 1h 45m</p>
-                        </motion.div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                    <div className="pt-2 flex-1">
+                      <h3 className="font-bold text-neutral-900 mb-5 text-[15px]">Choose action</h3>
+                      <div className="space-y-6 border-b border-neutral-100 pb-6">
+                        <div className="flex items-center justify-between">
+                          <p className="font-semibold text-neutral-900 text-[14px]">Refresh</p>
+                          <div className="w-5 h-5 rounded-full border-[2.5px] border-[#25D366] flex items-center justify-center">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#25D366]"></div>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <p className="font-semibold text-neutral-600 text-[14px]">Top up session</p>
+                          <div className="w-5 h-5 rounded-full border-[2.5px] border-neutral-400"></div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <p className="font-semibold text-neutral-600 text-[14px]">Stop session</p>
+                          <div className="w-5 h-5 rounded-full border-[2.5px] border-neutral-400"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-auto">
+                      <button className="w-full bg-[#25D366] hover:bg-[#1DA851] text-white font-bold py-4 rounded-xl text-[15px] transition-colors shadow-sm">
+                        Refresh
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        {/* Payment Flow Features */}
-        <motion.div variants={fadeUp} className="mt-12 grid gap-4 md:grid-cols-4">
-          {[
-            { icon: "🔐", title: "Encrypted", text: "End-to-end secure" },
-            { icon: "⚡", title: "Instant", text: "2 sec socket unlock" },
-            { icon: "📊", title: "Verified", text: "Smart DB tracked" },
-            { icon: "✓", title: "Tracked", text: "Payment linked" },
-          ].map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              variants={fadeUp}
-              custom={index}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-neutral-200 bg-white/70 p-4 text-center transition-all duration-300 hover:border-primary-300 hover:shadow-lg hover:shadow-primary-200/50"
-            >
-              <div className="text-3xl mb-2">{feature.icon}</div>
-              <p className="text-xs font-black uppercase tracking-wider text-primary-700 mb-1">{feature.title}</p>
-              <p className="text-[10px] text-neutral-600">{feature.text}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Right: Content */}
+        <div className="space-y-10 lg:pl-8 py-8 relative z-10">
+          <motion.div variants={fadeUp}>
+            <p className="text-[11px] font-black uppercase tracking-widest text-primary-700">WhatsApp Integration</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-neutral-950 md:text-5xl">EV Charging through <br/><span className="text-primary-600">WhatsApp & UPI</span></h2>
+            <p className="mt-5 text-sm font-medium text-neutral-600 leading-relaxed max-w-md">
+              EbeeCharge enables seamless EV charging sessions directly through WhatsApp with secure UPI-native payments and zero app dependency.
+            </p>
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="space-y-5">
+            {steps.map((step, idx) => (
+              <div key={idx} className="flex gap-4 items-center relative group cursor-pointer" onClick={() => setActiveStep(idx)}>
+                {idx < steps.length - 1 && (
+                  <div className="absolute left-[13px] top-8 h-8 w-[2px] bg-neutral-200"></div>
+                )}
+                <div className={`relative z-10 w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300 ${activeStep === idx ? "bg-primary-500 text-neutral-900 shadow-md shadow-primary-500/30 scale-110" : "bg-white text-neutral-500 border border-neutral-300"}`}>
+                  {idx + 1}
+                </div>
+                <div className={`transition-all duration-300 ${activeStep === idx ? "opacity-100 translate-x-1" : "opacity-60"}`}>
+                  <p className="text-[15px] font-bold text-neutral-900">{step}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-2.5 pt-6 border-t border-neutral-200/60">
+            {features.map((feature, idx) => (
+              <span key={idx} className="px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-[11px] font-bold text-neutral-700 shadow-sm transition-all">
+                {feature}
+              </span>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </motion.section>
   );
 }
 
 function SmartDashboardSection() {
-  const [selectedSocket, setSelectedSocket] = useState(0);
-
   return (
     <motion.section
       id="smart-dashboard"
@@ -788,338 +303,145 @@ function SmartDashboardSection() {
       whileInView="visible"
       viewport={viewport}
       variants={stagger}
-      className="scroll-mt-36 overflow-hidden rounded-[2rem] border border-white/70 bg-gradient-to-br from-[#FEFAF7]/95 via-[#FDF2E5]/90 to-[#FEFAF7]/95 p-5 shadow-[0_20px_50px_-25px_rgba(23,23,20,0.28)] target:border-primary-400 target:shadow-[0_24px_52px_-16px_rgba(242,221,52,0.55)] sm:p-7 lg:p-9"
+      className="scroll-mt-36 overflow-hidden rounded-[2rem] border border-white/70 bg-gradient-to-br from-[#FEFAF7]/95 via-[#FDF2E5]/90 to-[#FEFAF7]/95 p-5 shadow-[0_20px_50px_-25px_rgba(23,23,20,0.28)] sm:p-7 lg:p-9 relative"
     >
-      <motion.div className="absolute inset-0 overflow-hidden rounded-[2rem] pointer-events-none">
-        <motion.div
-          className="absolute -top-40 right-1/3 h-80 w-80 rounded-full bg-primary-300/20 blur-3xl"
-          animate={{ x: [0, 80, 0], y: [0, -80, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 -left-40 h-96 w-96 rounded-full bg-primary-200/15 blur-3xl"
-          animate={{ x: [0, -60, 0], y: [0, 60, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-      </motion.div>
+      <div className="absolute inset-0 overflow-hidden rounded-[2rem] pointer-events-none">
+        <div className="absolute -top-40 right-1/3 h-80 w-80 rounded-full bg-primary-300/20 blur-3xl" />
+        <div className="absolute bottom-20 -left-40 h-96 w-96 rounded-full bg-primary-200/15 blur-3xl" />
+      </div>
 
       <div className="relative z-10">
-        <motion.div variants={fadeUp} className="mb-12">
-          <p className="text-[11px] font-black uppercase tracking-widest text-primary-700">03 / Smart Dashboard</p>
+        <motion.div variants={fadeUp} className="mb-10">
+          <p className="text-[11px] font-black uppercase tracking-widest text-primary-700">Dashboard</p>
           <h2 className="mt-3 text-3xl font-black tracking-tight text-neutral-950 md:text-5xl">
             Command center for <span className="text-primary-600">every electron</span>
           </h2>
-          <p className="mt-4 max-w-2xl text-sm font-medium text-neutral-600">Real-time EV infrastructure intelligence. Monitor 32 sockets, transformer load, payment-linked sessions, and power distribution in one live dashboard.</p>
+          <p className="mt-4 max-w-2xl text-sm font-medium text-neutral-600">Real-time EV infrastructure intelligence. Monitor sockets, load, and payment-linked sessions in one professional dashboard.</p>
         </motion.div>
 
-        {/* Key Metrics - Animated Counters */}
-        <motion.div variants={fadeUp} className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Top 4 Metric Cards */}
+        <motion.div variants={fadeUp} className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { label: "Active Sessions", value: 12, icon: "🔌", color: "from-blue-400 to-blue-600" },
-            { label: "Transformer Load", value: 68, icon: "⚡", color: "from-yellow-400 to-yellow-600", suffix: "%" },
-            { label: "Total Power", value: 88, icon: "💡", color: "from-primary-400 to-primary-600", suffix: " kW" },
-            { label: "Grid Health", value: 99, icon: "💪", color: "from-green-400 to-green-600", suffix: "%" },
-          ].map((metric, index) => (
-            <motion.div
+            { label: "Total Energy", value: 12450, prefix: "", suffix: " kWh", icon: "⚡" },
+            { label: "Revenue", value: 142000, prefix: "₹", suffix: "", icon: "💰" },
+            { label: "Active Chargers", value: 28, prefix: "", suffix: " / 32", icon: "🔌" },
+            { label: "Sessions Today", value: 156, prefix: "", suffix: "", icon: "📊" },
+          ].map((metric) => (
+            <div
               key={metric.label}
-              variants={fadeUp}
-              custom={index}
-              className="relative rounded-2xl border-2 border-gradient-to-r from-neutral-200 to-neutral-100 bg-white/80 p-5 overflow-hidden group hover:border-primary-300 transition-all duration-300"
+              className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm hover:border-primary-300 transition-colors"
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                animate={{ x: [-100, 300] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-              <div className="relative z-10 flex items-start justify-between">
+              <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-wider text-neutral-500 mb-2">{metric.label}</p>
-                  <div className="flex items-baseline gap-2">
-                    <motion.span
-                      className="text-3xl font-black text-neutral-900"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={viewport}
-                    >
-                      <CountUp
-                        end={metric.value}
-                        duration={2.5}
-                        enableScrollSpy
-                        scrollSpyOnce
-                      />
-                    </motion.span>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-2">{metric.label}</p>
+                  <div className="flex items-baseline gap-1">
+                    {metric.prefix && <span className="text-lg font-bold text-neutral-600">{metric.prefix}</span>}
+                    <span className="text-3xl font-black text-neutral-900">
+                      <CountUp end={metric.value} duration={2} separator="," />
+                    </span>
                     {metric.suffix && <span className="text-sm font-bold text-neutral-600">{metric.suffix}</span>}
                   </div>
                 </div>
-                <motion.div
-                  className="text-3xl"
-                  animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.2 }}
-                >
+                <div className="text-2xl bg-neutral-50 p-2 rounded-lg border border-neutral-100">
                   {metric.icon}
-                </motion.div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
 
-        {/* Main Dashboard Grid */}
-        <motion.div variants={fadeUp} className="grid gap-6 lg:grid-cols-3">
-          {/* Left: Transformer & Power Flow */}
-          <motion.div
-            variants={fadeUp}
-            className="rounded-3xl border-2 border-neutral-200 bg-gradient-to-br from-white via-neutral-50 to-white p-6 shadow-lg"
-          >
-            <p className="text-xs font-black uppercase tracking-wider text-primary-700 mb-4">🏭 Power Distribution</p>
-            
-            {/* Transformer Visualization */}
-            <div className="relative h-64 flex flex-col items-center justify-between mb-4">
-              {/* Input Power Line */}
-              <svg className="absolute top-0 left-1/2 w-20 h-16 transform -translate-x-1/2" viewBox="0 0 100 60">
-                <motion.line
-                  x1="50"
-                  y1="0"
-                  x2="50"
-                  y2="30"
-                  stroke="rgb(242,221,52)"
-                  strokeWidth="3"
-                  strokeDasharray="5,5"
-                  initial={{ strokeDashoffset: 10 }}
-                  animate={{ strokeDashoffset: 0 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-                <text x="60" y="20" fontSize="10" fill="rgb(107, 114, 128)">In</text>
-              </svg>
-
-              {/* Transformer Box */}
-              <motion.div
-                className="relative w-24 h-24 border-4 border-primary-600 bg-gradient-to-br from-primary-100 to-primary-50 rounded-lg flex items-center justify-center"
-                animate={{
-                  boxShadow: [
-                    "0 0 20px rgba(242,221,52,0.3)",
-                    "0 0 40px rgba(242,221,52,0.6)",
-                    "0 0 20px rgba(242,221,52,0.3)",
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <div className="text-center">
-                  <p className="text-xs font-black text-primary-700">3φ</p>
-                  <p className="text-[10px] font-bold text-primary-600 mt-1">68% Load</p>
-                </div>
-              </motion.div>
-
-              {/* Output Power Lines */}
-              <svg className="absolute bottom-0 left-0 w-full h-20" viewBox="0 0 300 80">
-                {[0, 1, 2].map((phase) => (
-                  <motion.g key={phase}>
-                    <motion.line
-                      x1={50 + phase * 100}
-                      y1="0"
-                      x2={50 + phase * 100}
-                      y2="40"
-                      stroke={["rgb(59,130,246)", "rgb(239,68,68)", "rgb(34,197,94)"][phase]}
-                      strokeWidth="2"
-                      strokeDasharray="4,4"
-                      initial={{ strokeDashoffset: 8 }}
-                      animate={{ strokeDashoffset: 0 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear", delay: phase * 0.2 }}
-                    />
-                    <motion.circle
-                      cx={50 + phase * 100}
-                      cy="50"
-                      r="6"
-                      fill={["rgb(59,130,246)", "rgb(239,68,68)", "rgb(34,197,94)"][phase]}
-                      animate={{ r: [6, 10, 6] }}
-                      transition={{ duration: 1.5, repeat: Infinity, delay: phase * 0.2 }}
-                    />
-                  </motion.g>
-                ))}
-              </svg>
-            </div>
-
-            {/* Phase Distribution */}
-            <div className="space-y-2">
-              {[
-                { phase: "R", current: "42A", color: "from-blue-400 to-blue-600" },
-                { phase: "Y", current: "38A", color: "from-yellow-400 to-yellow-600" },
-                { phase: "B", current: "44A", color: "from-green-400 to-green-600" },
-              ].map((item, index) => (
-                <motion.div key={item.phase} className="flex items-center gap-3">
-                  <span className="text-xs font-black text-neutral-700 w-4">{item.phase}</span>
-                  <motion.div
-                    className={`flex-1 h-2 rounded-full bg-gradient-to-r ${item.color}`}
-                    initial={{ width: "0%" }}
-                    animate={{ width: ["60%", "75%", "65%"] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.2,
-                      ease: "easeInOut",
-                    }}
-                  />
-                  <span className="text-[9px] font-bold text-neutral-600 w-8 text-right">{item.current}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Center: Socket Grid */}
-          <motion.div
-            variants={fadeUp}
-            className="rounded-3xl border-2 border-neutral-200 bg-gradient-to-br from-white via-neutral-50 to-white p-6 shadow-lg"
-          >
-            <p className="text-xs font-black uppercase tracking-wider text-primary-700 mb-4">🔌 Socket Status (32)</p>
-            
-            {/* 4x4 Socket Grid */}
-            <div className="grid grid-cols-4 gap-2 mb-4">
-              {socketStates.map((socket, index) => (
-                <motion.button
-                  key={socket.bay}
-                  onClick={() => setSelectedSocket(index)}
-                  className={`relative aspect-square rounded-lg border-2 font-bold text-xs transition-all duration-300 ${
-                    selectedSocket === index
-                      ? "border-primary-500 bg-primary-100 text-primary-700 shadow-lg shadow-primary-300/50"
-                      : socket.active
-                      ? "border-green-400 bg-green-100 text-green-700"
-                      : "border-neutral-300 bg-white text-neutral-600"
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {socket.active && (
-                    <motion.div
-                      className="absolute inset-0 rounded-lg border-2 border-current"
-                      animate={{ scale: [1, 1.15, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  )}
-                  <div className="flex items-center justify-center h-full">
-                    {socket.active ? "●" : "○"}
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-
-            {/* Socket Legend */}
-            <div className="grid grid-cols-3 gap-2 text-[9px] font-bold">
-              <div className="flex items-center gap-2">
-                <motion.div
-                  className="w-2 h-2 rounded-full bg-green-500"
-                  animate={{ scale: [1, 1.4, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <span>Active</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full border-2 border-neutral-400" />
-                <span>Idle</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                <span>Queued</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right: Live Activity & Features */}
-          <motion.div
-            variants={fadeUp}
-            className="space-y-4"
-          >
-            {/* Real-time Activity Feed */}
-            <motion.div
-              className="rounded-2xl border-2 border-neutral-200 bg-white/80 p-4 shadow-lg"
-            >
-              <p className="text-xs font-black uppercase tracking-wider text-primary-700 mb-3">📊 Live Activity</p>
-              <div className="space-y-2">
-                {activityFeed.map((activity, index) => (
-                  <motion.div
-                    key={activity}
-                    initial={{ opacity: 0, x: 12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={viewport}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    className="flex items-start gap-2 text-[9px] leading-tight text-neutral-600 group hover:text-neutral-900 transition-colors"
-                  >
-                    <motion.span
-                      className="text-primary-500 mt-0.5 text-lg flex-shrink-0"
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        delay: index * 0.25,
-                      }}
-                    >
-                      ●
-                    </motion.span>
-                    <span className="font-medium">{activity}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Key Capabilities */}
-            <motion.div
-              className="grid grid-cols-2 gap-2"
-            >
-              {[
-                { icon: "🌡️", label: "Thermal Safe" },
-                { icon: "🛡️", label: "Protected" },
-                { icon: "⚙️", label: "Load Balanced" },
-                { icon: "✓", label: "Verified" },
-              ].map((feature, index) => (
-                <motion.div
-                  key={feature.label}
-                  variants={fadeUp}
-                  custom={index}
-                  className="rounded-lg border-2 border-neutral-200 bg-white/70 p-3 text-center group hover:border-primary-300 hover:bg-primary-50 transition-all duration-300"
-                >
-                  <div className="text-xl mb-1 group-hover:scale-110 transition-transform">
-                    {feature.icon}
-                  </div>
-                  <p className="text-[8px] font-bold text-neutral-700">{feature.label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </motion.div>
-
-        {/* Live Monitoring Graph */}
-        <motion.div variants={fadeUp} className="mt-6 rounded-3xl border-2 border-neutral-200 bg-white/80 p-6 shadow-lg">
-          <p className="text-xs font-black uppercase tracking-wider text-primary-700 mb-4">📈 Load Distribution Over Time</p>
+        {/* Middle 3 Columns */}
+        <motion.div variants={fadeUp} className="grid gap-6 lg:grid-cols-3 mb-6">
           
-          <div className="flex items-end justify-center gap-1 h-28">
-            {[44, 52, 68, 58, 72, 65, 78, 62, 55, 48, 71, 64].map((height, index) => (
-              <motion.div
-                key={index}
-                className="flex-1 rounded-t bg-gradient-to-t from-primary-500 to-primary-400 relative group"
-                initial={{ height: "20%" }}
-                animate={{
-                  height: [`${Math.max(height - 15, 10)}%`, `${height}%`, `${Math.max(height - 10, 10)}%`, `${height}%`],
-                }}
-                transition={{
-                  duration: 3.5 + index * 0.15,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.08,
-                }}
-                whileHover={{ opacity: 1, filter: "brightness(1.1)" }}
-              >
-                <motion.div
-                  className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity"
-                >
-                  {height}%
-                </motion.div>
-              </motion.div>
-            ))}
+          {/* Column 1: Charger Status & Top Locations */}
+          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col h-full">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-primary-700 mb-4">Charger Status</p>
+            <div className="grid grid-cols-4 gap-2.5 mb-8">
+               {Array.from({ length: 16 }).map((_, i) => (
+                 <div key={i} className={`aspect-square rounded-lg border font-bold text-[10px] flex items-center justify-center ${i % 3 === 0 ? "border-green-400 bg-green-50 text-green-700" : i % 7 === 0 ? "border-yellow-400 bg-yellow-50 text-yellow-700" : "border-neutral-200 bg-neutral-50 text-neutral-500"}`}>
+                    {i % 3 === 0 ? "●" : "○"}
+                 </div>
+               ))}
+            </div>
+            
+            <p className="text-[11px] font-bold uppercase tracking-wider text-primary-700 mb-4 mt-auto">Top Locations</p>
+            <div className="space-y-4">
+               {[
+                 { name: "Parkwood Apartments", value: "450 kWh" },
+                 { name: "Tech Park SEZ", value: "320 kWh" },
+                 { name: "City Mall", value: "280 kWh" }
+               ].map(loc => (
+                 <div key={loc.name} className="flex justify-between items-center text-[13px]">
+                   <span className="font-semibold text-neutral-600">{loc.name}</span>
+                   <span className="font-bold text-neutral-900">{loc.value}</span>
+                 </div>
+               ))}
+            </div>
           </div>
 
-          <div className="flex justify-between mt-4 text-[9px] font-bold text-neutral-500">
-            <span>12:00</span>
-            <span>12:30</span>
-            <span>01:00</span>
-            <span>01:30</span>
+          {/* Column 2: Energy Consumption */}
+          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-primary-700 mb-6">Energy Consumption</p>
+            <div className="flex-1 flex flex-col justify-end min-h-[220px]">
+              <div className="flex items-end justify-between gap-1.5 h-48 border-b border-neutral-200 pb-2">
+                {[35, 42, 55, 48, 65, 82, 75, 60, 52, 45, 68, 70].map((height, index) => (
+                  <div
+                    key={index}
+                    className="flex-1 rounded-t bg-gradient-to-t from-primary-500 to-primary-400 opacity-90 transition-opacity hover:opacity-100"
+                    style={{ height: `${height}%` }}
+                  ></div>
+                ))}
+              </div>
+              <div className="flex justify-between mt-3 text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
+                <span>Jan</span>
+                <span>Apr</span>
+                <span>Jul</span>
+                <span>Oct</span>
+                <span>Dec</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Column 3: Recent Sessions */}
+          <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-primary-700 mb-4">Recent Sessions</p>
+            <div className="space-y-3.5">
+              {[
+                { id: "TXN-8472", loc: "Socket A12", amount: "₹120", time: "2 mins ago", status: "Completed" },
+                { id: "TXN-8471", loc: "Socket B04", amount: "₹340", time: "15 mins ago", status: "Completed" },
+                { id: "TXN-8470", loc: "Socket C01", amount: "₹85", time: "1 hr ago", status: "Completed" },
+                { id: "TXN-8469", loc: "Socket A08", amount: "₹210", time: "2 hrs ago", status: "Completed" },
+                { id: "TXN-8468", loc: "Socket D12", amount: "₹150", time: "3 hrs ago", status: "Completed" },
+              ].map(session => (
+                <div key={session.id} className="flex justify-between items-center p-3.5 rounded-xl border border-neutral-100 bg-neutral-50">
+                  <div>
+                    <p className="text-[13px] font-bold text-neutral-900">{session.loc}</p>
+                    <p className="text-[11px] font-medium text-neutral-500 mt-0.5">{session.id} • {session.time}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[13px] font-bold text-green-600">{session.amount}</p>
+                    <p className="text-[9px] font-bold text-neutral-400 uppercase mt-0.5">{session.status}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Load Distribution Over Time (Static Graph) */}
+        <motion.div variants={fadeUp} className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-primary-700 mb-6">Load Distribution Over Time</p>
+          <div className="h-40 flex items-end gap-[3px] border-b border-neutral-200 pb-2">
+            {[20, 25, 30, 22, 18, 15, 25, 45, 60, 80, 95, 85, 75, 88, 92, 85, 70, 60, 50, 45, 40, 35, 30, 25].map((h, i) => (
+               <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-primary-500 to-primary-300 opacity-90 hover:opacity-100 transition-opacity" style={{ height: `${h}%` }}></div>
+            ))}
+          </div>
+          <div className="flex justify-between mt-3 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
+             <span>00:00</span>
+             <span>06:00</span>
+             <span>12:00</span>
+             <span>18:00</span>
+             <span>23:59</span>
           </div>
         </motion.div>
       </div>
@@ -1144,39 +466,17 @@ export function SoftwarePlatform({ onRequestAudit }: SoftwarePlatformProps) {
       <Header onRequestAudit={openAudit} />
 
       <main className="flex-1">
-        <section id="software-platform" className="relative overflow-hidden border-b border-neutral-300 bg-transparent pt-12 pb-16 lg:pt-20 lg:pb-28">
+        <section id="software-platform" className="relative overflow-hidden bg-transparent pt-12 pb-8 lg:pt-20 lg:pb-16">
           <div className="absolute top-0 left-0 h-[760px] w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(242,221,52,0.15),rgba(255,255,255,0))]" />
           <div className="absolute left-1/4 top-1/3 h-[560px] w-[560px] rounded-full bg-primary-300/20 blur-[140px] mix-blend-multiply" />
           <div className="absolute bottom-0 right-1/4 h-[640px] w-[640px] rounded-full bg-primary-200/30 blur-[150px] mix-blend-multiply" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="space-y-8 md:space-y-10">
-              <WhatsAppSection />
-              <UpiSection />
+              <WhatsAppIntegrationSection />
               <SmartDashboardSection />
             </div>
           </div>
-        </section>
-
-        <section className="relative overflow-hidden border-t border-neutral-300 py-16 md:py-24">
-          <div className="absolute left-1/2 top-1/2 h-[360px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-400/10 blur-[110px]" />
-          <motion.div initial="hidden" whileInView="visible" viewport={viewport} variants={fadeUp} className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
-            <p className="text-[11px] font-black uppercase tracking-widest text-primary-700">Ready for audit</p>
-            <h2 className="mt-4 text-3xl font-black tracking-tight text-neutral-950 md:text-5xl">Map WhatsApp + UPI charging for your property</h2>
-            <p className="mt-5 max-w-xl text-sm font-medium leading-relaxed text-neutral-500">
-              Ebee can review parking layout, resident flow, payment settlement, and Smart Dashboard visibility before your first live charger.
-            </p>
-            <motion.button
-              type="button"
-              onClick={openAudit}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="mt-8 inline-flex items-center gap-3 rounded-full bg-neutral-950 px-8 py-4 text-[11px] font-black uppercase tracking-widest text-primary-500 shadow-xl shadow-neutral-900/20"
-            >
-              Request Site Audit
-              <ArrowRight className="h-4 w-4" />
-            </motion.button>
-          </motion.div>
         </section>
       </main>
 
