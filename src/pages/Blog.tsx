@@ -1,4 +1,4 @@
-import Shuffle from "../components/ui/Shuffle";
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, BookOpen, CalendarDays, ChevronRight, Clock, Search, Sparkles, UserRound, Zap } from "lucide-react";
@@ -8,7 +8,7 @@ import { Footer } from "../components/Footer";
 import { FeasibilityModal } from "../components/FeasibilityModal";
 import { BlogSearch } from "../components/BlogSearch";
 import { blogs, type BlogPost } from "../data/blogs";
-import DecryptedText from "../components/ui/DecryptedText";
+
 function BlogCover({
   post
 }: {
@@ -104,7 +104,7 @@ function BlogCard({
 
         <Link to={`/blog/${post.slug}`} className="group/link relative mt-auto inline-flex w-full items-center justify-center gap-2 overflow-hidden bg-neutral-950 px-5 py-3 text-[12px] font-black uppercase tracking-wider text-primary-500 transition-all duration-300 hover:-translate-y-0.5 sm:w-fit">
           <span className="absolute inset-0 w-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/link:animate-[shimmer_1.5s_infinite]" />
-          <span className="relative"><Shuffle text="Read More" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" /></span>
+          <span className="relative">Read More</span>
           <ChevronRight className="relative h-4 w-4 stroke-[3] transition-transform group-hover/link:translate-x-1" />
         </Link>
       </div>
@@ -147,10 +147,10 @@ export default function Blog() {
                 </div>
 
                 <h1 className="text-4xl sm:text-6xl lg:text-[4.5rem] font-black text-neutral-900 tracking-tight leading-[1.05] font-display drop-shadow-sm">
-                  <DecryptedText text="EbeeCharge" animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />
-                  <br className="hidden sm:block" /> <DecryptedText text="Blog for" animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />{" "}
+                  EbeeCharge
+                  <br className="hidden sm:block" /> Blog for{" "}
                   <span className="text-primary-600 relative inline-block drop-shadow-sm">
-                    <DecryptedText text="Smarter EV Decisions." animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />
+                    Smarter EV Decisions.
                   </span>
                 </h1>
 
@@ -168,12 +168,12 @@ export default function Blog() {
                   scale: 0.98
                 }} className="group relative px-8 py-5 bg-gradient-to-r from-primary-400 to-primary-500 text-neutral-950 font-black text-[14px] tracking-wider uppercase transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(242,221,52,0.6),inset_0_2px_0_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-10px_rgba(242,221,52,0.8),inset_0_2px_0_rgba(255,255,255,0.6)] flex items-center justify-center gap-3 leading-none overflow-hidden border border-primary-300/50">
                     <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-                    <Shuffle text="Read Latest Posts" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                    Read Latest Posts
                     <ChevronRight className="w-5 h-5 stroke-[3] group-hover:translate-x-1 transition-transform drop-shadow-sm" />
                   </motion.a>
 
                   <Link to="/resources" className="inline-flex items-center justify-center gap-2 px-8 py-5 border border-neutral-300 bg-white/75 text-neutral-900 text-[14px] font-black uppercase tracking-wider shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white">
-                    <Shuffle text="Resources" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                    Resources
                     <ArrowUpRight className="w-4 h-4 stroke-[3]" />
                   </Link>
                 </div>
@@ -260,7 +260,7 @@ export default function Blog() {
                   Try searching for ethanol, Smart DB, UPI, RWA, or solar.
                 </p>
                 <button type="button" onClick={() => setDisplayedBlogs(blogs)} className="mt-5 text-[12px] font-black uppercase tracking-wider text-primary-600 hover:underline">
-                  <Shuffle text="View All Articles" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  View All Articles
                 </button>
               </div>}
           </div>

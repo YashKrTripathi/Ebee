@@ -1,4 +1,4 @@
-import Shuffle from "./ui/Shuffle";
+
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 interface FooterProps {
@@ -42,7 +42,7 @@ export function Footer({
           <div className="col-span-1 border-t border-neutral-300/40 pt-4 md:border-0 md:pt-0">
             <button onClick={() => toggleSection('solutions')} className="w-full flex justify-between items-center md:pointer-events-none group">
               <h5 className="text-[10px] font-bold text-neutral-500 tracking-widest uppercase">
-                <Shuffle text="Solutions" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                Solutions
               </h5>
               <ChevronDown className={`w-4 h-4 text-neutral-400 md:hidden transition-transform duration-300 ${openSection === 'solutions' ? 'rotate-180' : ''}`} />
             </button>
@@ -60,7 +60,7 @@ export function Footer({
           <div className="col-span-1 border-t border-neutral-300/40 pt-4 md:border-0 md:pt-0">
             <button onClick={() => toggleSection('audiences')} className="w-full flex justify-between items-center md:pointer-events-none group">
               <h5 className="text-[10px] font-bold text-neutral-500 tracking-widest uppercase">
-                <Shuffle text="Property Audiences" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                Property Audiences
               </h5>
               <ChevronDown className={`w-4 h-4 text-neutral-400 md:hidden transition-transform duration-300 ${openSection === 'audiences' ? 'rotate-180' : ''}`} />
             </button>
@@ -89,7 +89,7 @@ export function Footer({
             </div>
 
             <button onClick={onRequestAudit} className="text-left py-1 text-xs text-[#e8a317] font-bold hover:underline transition focus:outline-none flex items-center gap-1 leading-none">
-              <Shuffle text="Request Feasibility Audit \u2794" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+              Request Feasibility Audit \u2794
             </button>
           </div>
 

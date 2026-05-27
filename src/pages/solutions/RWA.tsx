@@ -1,4 +1,4 @@
-import Shuffle from '../../components/ui/Shuffle';
+
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -72,7 +72,7 @@ export function RWA() {
             }} whileTap={{
               scale: 0.98
             }} className="inline-flex px-8 py-4 bg-neutral-900 text-primary-500 font-black tracking-wider uppercase transition-all shadow-xl hover:shadow-neutral-900/40 items-center justify-center gap-3">
-                <Shuffle text="Request Site Feasibility Audit" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                Request Site Feasibility Audit
               </motion.button>
             </motion.div>
           </div>

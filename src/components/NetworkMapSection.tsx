@@ -1,4 +1,4 @@
-import Shuffle from "./ui/Shuffle";
+
 import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -202,7 +202,7 @@ export function NetworkMapSection({
                 <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
                 
                 <span className="relative z-10 flex items-center gap-2">
-                  <Shuffle text="View Full Network Map" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" /> 
+                  View Full Network Map 
                   <ArrowRight className="w-4 h-4 stroke-[3] group-hover:translate-x-1 transition-transform" />
                 </span>
               </motion.button>

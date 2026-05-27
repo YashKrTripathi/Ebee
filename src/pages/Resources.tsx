@@ -1,4 +1,4 @@
-import Shuffle from "../components/ui/Shuffle";
+
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowDownToLine, ArrowUpRight, BookOpen, CalendarDays, ChevronRight, Clock, Download, FileQuestion, FileText, HelpCircle, Minus, Plus, Search, ShieldCheck, Sparkles, Zap } from "lucide-react";
@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { FeasibilityModal } from "../components/FeasibilityModal";
-import DecryptedText from "../components/ui/DecryptedText";
+
 const categories = [{
   label: "All",
   value: "all",
@@ -167,10 +167,10 @@ export default function Resources() {
                 </div>
 
                 <h1 className="text-4xl sm:text-6xl lg:text-[4.5rem] font-black text-neutral-900 tracking-tight leading-[1.05] font-display drop-shadow-sm">
-                  <DecryptedText text="EV Charging" animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />
-                  <br className="hidden sm:block" /> <DecryptedText text="Knowledge for" animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />{" "}
+                  EV Charging
+                  <br className="hidden sm:block" /> Knowledge for{" "}
                   <span className="text-primary-600 relative inline-block drop-shadow-sm">
-                    <DecryptedText text="Smarter Properties." animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />
+                    Smarter Properties.
                   </span>
                 </h1>
 
@@ -188,12 +188,12 @@ export default function Resources() {
                   scale: 0.98
                 }} className="group relative px-8 py-5 bg-gradient-to-r from-primary-400 to-primary-500 text-neutral-950 font-black text-[14px] tracking-wider uppercase transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(242,221,52,0.6),inset_0_2px_0_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-10px_rgba(242,221,52,0.8),inset_0_2px_0_rgba(255,255,255,0.6)] flex items-center justify-center gap-3 leading-none overflow-hidden border border-primary-300/50">
                     <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-                    <Shuffle text="Explore Resources" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                    Explore Resources
                     <ChevronRight className="w-5 h-5 stroke-[3] group-hover:translate-x-1 transition-transform drop-shadow-sm" />
                   </motion.a>
 
                   <button type="button" onClick={handleOpenAudit} className="inline-flex items-center justify-center gap-2 px-8 py-5 border border-neutral-300 bg-white/75 text-neutral-900 text-[14px] font-black uppercase tracking-wider shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white">
-                    <Shuffle text="Request Audit" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                    Request Audit
                     <ArrowUpRight className="w-4 h-4 stroke-[3]" />
                   </button>
                 </div>
@@ -430,7 +430,7 @@ export default function Resources() {
                       {download.description}
                     </p>
                     <button type="button" className="mt-5 inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-wider text-primary-600">
-                      <Shuffle text="Download" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                      Download
                       <ArrowDownToLine className="h-4 w-4" />
                     </button>
                   </motion.article>)}
@@ -497,7 +497,7 @@ export default function Resources() {
             scale: 0.95
           }} className="group relative px-12 py-5 bg-neutral-950 text-primary-500 font-black text-[14px] tracking-wider uppercase transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] inline-flex items-center justify-center gap-3 leading-none overflow-hidden border border-neutral-800">
               <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-              <Shuffle text="Request Site Audit" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+              Request Site Audit
               <Zap className="w-5 h-5 stroke-[3] group-hover:scale-110 transition-transform" />
             </motion.button>
           </div>

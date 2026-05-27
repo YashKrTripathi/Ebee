@@ -1,4 +1,4 @@
-import Shuffle from "./ui/Shuffle";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronRight, MapPin, Zap, Activity, Wifi, TrendingUp, Phone } from "lucide-react";
@@ -249,7 +249,7 @@ export function ResidentialNetworkMap() {
               }} whileTap={{
                 scale: 0.98
               }} className="group inline-flex items-center justify-center bg-gradient-to-r from-primary-400 to-primary-500 px-8 py-4 font-black uppercase tracking-[0.24em] text-neutral-950 shadow-[0_20px_50px_-15px_rgba(242,221,52,0.6)] transition-all hover:shadow-[0_25px_60px_-15px_rgba(242,221,52,0.8)]">
-                  <Shuffle text="Find Nearby Charging" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  Find Nearby Charging
                   <ChevronRight className="ml-3 w-5 h-5 stroke-[3]" />
                 </motion.button>
                 <motion.button whileHover={{
@@ -258,7 +258,7 @@ export function ResidentialNetworkMap() {
               }} whileTap={{
                 scale: 0.98
               }} className="inline-flex items-center justify-center border border-primary-500/40 bg-primary-500/5 px-8 py-4 font-black uppercase tracking-[0.24em] text-primary-300 transition-all hover:bg-primary-500/10 hover:border-primary-500/60">
-                  <Shuffle text="Book Society Audit" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  Book Society Audit
                 </motion.button>
               </div>
             </div>
@@ -437,7 +437,7 @@ export function ResidentialNetworkMap() {
                     <h3 className="mt-2 text-2xl font-black text-white">{selectedNode.name}</h3>
                   </div>
                   <button onClick={() => setSelectedNode(null)} className="text-neutral-400 hover:text-white transition-colors">
-                    <Shuffle text="\u2715" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                    \u2715
                   </button>
                 </div>
 
@@ -493,7 +493,7 @@ export function ResidentialNetworkMap() {
             }} whileTap={{
               scale: 0.98
             }} className="w-full bg-gradient-to-r from-primary-400 to-primary-500 px-6 py-3 font-bold uppercase tracking-[0.2em] text-neutral-950 transition-all hover:shadow-[0_20px_40px_-10px_rgba(242,221,52,0.6)]">
-                  <Shuffle text="Book on WhatsApp" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  Book on WhatsApp
                 </motion.button>
               </motion.div>
             </motion.div>}

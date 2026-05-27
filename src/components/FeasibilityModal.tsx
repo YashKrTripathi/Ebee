@@ -1,4 +1,4 @@
-import Shuffle from "./ui/Shuffle";
+
 import { useState, ChangeEvent, FormEvent } from "react";
 import { X, Search, Check, Calculator, Clock, Cpu, Award, IndianRupee, FileText, Printer, ArrowRight, Eye, ShieldCheck, Mail, Building2, MapPin, Loader2 } from "lucide-react";
 import { FeasibilityReport, AuditRequestInput } from "../types";
@@ -190,7 +190,7 @@ export function FeasibilityModal({
 
               <div className="pt-2 md:pt-4 border-t border-neutral-300/60 flex justify-end">
                 <button type="submit" className="px-6 py-3 bg-primary-500 font-bold text-neutral-950 text-sm tracking-tight hover:bg-primary-400 active:scale-95 transition-all text-center flex items-center gap-2">
-                  <Shuffle text="\uD83D\uDE80 Run AI EV Feasibility Audit Now" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" /> <ArrowRight className="w-4 h-4" />
+                  \uD83D\uDE80 Run AI EV Feasibility Audit Now <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </form>) : loading ? (/* Loading Steps Screen */
@@ -286,13 +286,13 @@ export function FeasibilityModal({
               {/* Tabs selector */}
               <div className="flex border-b border-neutral-300 gap-1 inline-flex p-1 bg-neutral-200 w-full print:hidden">
                 <button type="button" onClick={() => setActiveTab("tech")} className={`flex-1 flex justify-center items-center gap-2 py-2 px-3 text-xs font-bold  transition-all ${activeTab === "tech" ? "bg-primary-500 text-neutral-950" : "text-neutral-500 hover:text-neutral-800"}`}>
-                  <Cpu className="w-3.5 h-3.5" /> <Shuffle text="Grid & Safety" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  <Cpu className="w-3.5 h-3.5" /> Grid & Safety
                 </button>
                 <button type="button" onClick={() => setActiveTab("fin")} className={`flex-1 flex justify-center items-center gap-2 py-2 px-3 text-xs font-bold  transition-all ${activeTab === "fin" ? "bg-primary-500 text-neutral-950" : "text-neutral-500 hover:text-neutral-800"}`}>
-                  <IndianRupee className="w-3.5 h-3.5" /> <Shuffle text="Budget delta (40% saved)" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  <IndianRupee className="w-3.5 h-3.5" /> Budget delta (40% saved)
                 </button>
                 <button type="button" onClick={() => setActiveTab("map")} className={`flex-1 flex justify-center items-center gap-2 py-2 px-3 text-xs font-bold  transition-all ${activeTab === "map" ? "bg-primary-500 text-neutral-950" : "text-neutral-500 hover:text-neutral-800"}`}>
-                  <Clock className="w-3.5 h-3.5" /> <Shuffle text="15-Day Rollout Flow" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  <Clock className="w-3.5 h-3.5" /> 15-Day Rollout Flow
                 </button>
               </div>
 
@@ -415,13 +415,13 @@ export function FeasibilityModal({
               {/* PDF Actions button bar */}
               <div className="border-t border-neutral-300/60 pt-5 flex flex-wrap gap-3 justify-end print:hidden">
                 <button type="button" onClick={() => setReport(null)} className="px-4 py-2 border border-neutral-300 text-xs hover:bg-neutral-200 transition tracking-tight">
-                  <Shuffle text="\u25C0\uFE0F Reset Audit details" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  \u25C0\uFE0F Reset Audit details
                 </button>
                 <button type="button" onClick={handlePrint} className="px-4 py-2 bg-neutral-200 hover:bg-neutral-800 text-[#e8a317] border border-[#e8a317]/20 font-bold text-xs tracking-tight flex items-center gap-1.5 transition-all active:scale-95">
-                  <Printer className="w-3.5 h-3.5" /> <Shuffle text="Save Feasibility PDF / Print" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  <Printer className="w-3.5 h-3.5" /> Save Feasibility PDF / Print
                 </button>
                 <button type="button" onClick={onClose} className="px-5 py-2 bg-primary-500 text-neutral-950 font-bold text-xs tracking-tight transition hover:bg-primary-400 active:scale-95">
-                  <Shuffle text="Complete Feasibility Check" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                  Complete Feasibility Check
                 </button>
               </div>
 

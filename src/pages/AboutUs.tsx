@@ -1,4 +1,4 @@
-import Shuffle from "../components/ui/Shuffle";
+
 import { useEffect, useState, type ReactNode } from "react";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Award, BadgeCheck, Building2, CheckCircle2, CircuitBoard, Globe2, Landmark, MapPin, RadioTower, ShieldCheck, Sparkles, Users, Waypoints, Zap } from "lucide-react";
@@ -6,7 +6,7 @@ import ebeeLogo from "../assets/ebee-charge-logo.svg";
 import { FeasibilityModal } from "../components/FeasibilityModal";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import DecryptedText from "../components/ui/DecryptedText";
+
 const viewport = {
   once: true,
   amount: 0.18
@@ -176,8 +176,8 @@ function AboutHero({
             </motion.div>
 
             <motion.h1 id="about-title" variants={fadeUp} className="font-display text-4xl font-black leading-[1.05] tracking-tight text-neutral-900 drop-shadow-sm sm:text-6xl lg:text-[4.5rem]">
-              <DecryptedText text="Building EV charging that" animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />{" "}
-              <span className="relative inline-block text-primary-600 drop-shadow-sm"><DecryptedText text="people actually use." animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} /></span>
+              Building EV charging that{" "}
+              <span className="relative inline-block text-primary-600 drop-shadow-sm">people actually use.</span>
             </motion.h1>
 
             <motion.p variants={fadeUp} className="max-w-xl text-lg font-medium leading-relaxed text-neutral-600 sm:mx-auto sm:text-xl lg:mx-0">
@@ -188,7 +188,7 @@ function AboutHero({
             <motion.div variants={fadeUp} className="flex flex-col gap-3 pt-2 sm:flex-row sm:justify-center lg:justify-start">
               <PrimaryButton onClick={onRequestAudit}>Request site audit</PrimaryButton>
               <a href="mailto:hello@ebeecharge.in" className="inline-flex items-center justify-center border border-neutral-300 bg-white/70 px-7 py-4 text-[12px] font-black uppercase tracking-wider text-neutral-800 shadow-sm backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white hover:text-neutral-950">
-                <Shuffle text="Talk to the team" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                Talk to the team
               </a>
             </motion.div>
           </motion.div>

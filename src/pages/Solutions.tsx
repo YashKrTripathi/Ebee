@@ -1,10 +1,10 @@
-import Shuffle from "../components/ui/Shuffle";
+
 import { useEffect, useState } from "react";
 import { ArrowRight, BatteryCharging, Building2, CarFront, CheckCircle2, CircuitBoard, ClipboardCheck, Factory, FileCheck2, Gauge, Home, MessageSquare, PlugZap, ReceiptIndianRupee, ShieldCheck, Smartphone, Users, Zap } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import DecryptedText from "../components/ui/DecryptedText";
+
 import { FeasibilityModal } from "../components/FeasibilityModal";
 import { StarTopologyChallenges } from "../components/StarTopologyChallenges";
 import { HowEbeeWorks } from "../components/HowEbeeWorks/HowEbeeWorks";
@@ -201,10 +201,10 @@ export function SolutionsPage() {
             </motion.div>
 
             <motion.h1 variants={fadeUp} className="text-4xl sm:text-6xl lg:text-[5rem] font-black text-neutral-900 tracking-tight leading-[1.02] font-display drop-shadow-sm mb-20 max-w-4xl">
-              <DecryptedText text="EV-ready properties" animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />
+              EV-ready properties
               <br className="hidden sm:block" />
               <span className="relative inline-block">
-                <DecryptedText text="without friction" animateOn="view" clickMode="once" revealDirection="start" speed={60} maxIterations={10} sequential={true} useOriginalCharsOnly={false} />
+                without friction
               </span>
             </motion.h1>
 
@@ -375,7 +375,7 @@ export function SolutionsPage() {
                 scale: 0.98
               }} className="w-full group relative px-10 py-6 bg-gradient-to-r from-primary-400 to-primary-500 text-neutral-950 font-black text-[15px] -[2rem] tracking-wider uppercase transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(242,221,52,0.6),inset_0_2px_0_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-10px_rgba(242,221,52,0.8),inset_0_2px_0_rgba(255,255,255,0.6)] flex items-center justify-center gap-3 leading-none overflow-hidden border border-primary-300/50">
                 <span className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-                <Shuffle text="Request Site Audit" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+                Request Site Audit
                 <ArrowRight className="w-6 h-6 stroke-[3] group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </motion.div>
@@ -610,7 +610,7 @@ export function SolutionsPage() {
               scale: 0.98
             }} className="group relative mt-8 inline-flex items-center justify-center gap-3 overflow-hidden border border-primary-300/50 bg-gradient-to-r from-primary-400 to-primary-500 px-9 py-5 text-[13px] font-black uppercase tracking-wider text-neutral-950 shadow-[0_15px_35px_-10px_rgba(242,221,52,0.65)]">
               <span className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-              <Shuffle text="Request Your Site Feasibility Audit" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+              Request Your Site Feasibility Audit
               <ArrowRight className="relative w-5 h-5 stroke-[3] group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </motion.div>

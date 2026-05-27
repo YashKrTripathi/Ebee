@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import type { MouseEvent } from "react";
 import { ArrowUpRight, Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Shuffle from "./ui/Shuffle";
+
 
 const navItems = [
   { 
@@ -220,7 +220,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
                                             : "text-neutral-600 hover:bg-primary-500/10 hover:text-primary-600"
                                         }`}
                                       >
-                                        <Shuffle text={subOpt.label} shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} tag="span" />
+                                        {subOpt.label}
                                       </Link>
                                     );
                                   })}
@@ -242,7 +242,7 @@ export function Navbar({ onContactClick }: NavbarProps) {
                                   : "text-neutral-600 hover:bg-primary-500/10 hover:text-primary-600"
                               }`}
                             >
-                              <Shuffle text={opt.label} shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} tag="span" />
+                              {opt.label}
                             </Link>
                           );
                         })}

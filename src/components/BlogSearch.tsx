@@ -1,4 +1,4 @@
-import Shuffle from "./ui/Shuffle";
+
 import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { motion } from "motion/react";
@@ -57,7 +57,7 @@ export function BlogSearch({
         scale: 0.98
       }} className="group relative inline-flex items-center justify-center gap-2 overflow-hidden bg-neutral-950 px-7 py-4 text-[12px] font-black uppercase tracking-wider text-primary-500 transition-all duration-300 hover:-translate-y-0.5 sm:w-auto">
           <span className="absolute inset-0 w-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-          <span className="relative"><Shuffle text="Search" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" /></span>
+          <span className="relative">Search</span>
           <Search className="relative h-4 w-4" />
         </motion.button>
       </div>

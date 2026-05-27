@@ -1,4 +1,4 @@
-import Shuffle from '../../components/ui/Shuffle';
+
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, CalendarDays, ChevronRight, Clock, UserRound, Zap } from "lucide-react";
@@ -84,7 +84,7 @@ export default function BlogDetail() {
               Article not found.
             </h1>
             <Link to="/blog" className="mt-8 inline-flex items-center gap-2 bg-neutral-950 px-6 py-4 text-[12px] font-black uppercase tracking-wider text-primary-500">
-              <Shuffle text="Back to Blog" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+              Back to Blog
               <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
@@ -105,7 +105,7 @@ export default function BlogDetail() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <Link to="/blog" className="mb-8 inline-flex items-center gap-2 border border-white/60 bg-white/70 px-4 py-2 text-[11px] font-black uppercase tracking-wider text-neutral-700 shadow-sm backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white">
               <ArrowLeft className="h-4 w-4 text-primary-600" />
-              <Shuffle text="Back to Blog" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+              Back to Blog
             </Link>
 
             <motion.div initial={{
@@ -256,7 +256,7 @@ export default function BlogDetail() {
             scale: 0.95
           }} className="group relative px-12 py-5 bg-neutral-950 text-primary-500 font-black text-[14px] tracking-wider uppercase transition-all duration-300 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] inline-flex items-center justify-center gap-3 leading-none overflow-hidden border border-neutral-800">
               <div className="absolute inset-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-              <Shuffle text="Book Audit" shuffleDirection="right" duration={0.35} shuffleTimes={1} ease="power3.out" stagger={0.03} triggerOnHover={true} loop={false} loopDelay={0} tag="span" />
+              Book Audit
               <Zap className="w-5 h-5 stroke-[3] group-hover:scale-110 transition-transform" />
             </motion.button>
           </div>
