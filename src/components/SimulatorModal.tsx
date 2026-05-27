@@ -24,7 +24,7 @@ export function SimulatorModal({ isOpen, onClose }: SimulatorModalProps) {
         </div>
 
         {/* The Simulator */}
-        <div className="relative z-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.1)] rounded-[56px] overflow-hidden bg-white">
+        <div className="relative z-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.1)] -[56px] overflow-hidden bg-white">
           <WhatsAppSimulator />
         </div>
         

@@ -438,7 +438,7 @@ export function JourneySection() {
       ))}
 
       <motion.div
-        className="absolute right-2 top-2 sm:right-4 sm:top-4 md:right-6 md:top-10 z-20 rounded-full border border-orange-200 bg-white/90 px-2.5 py-1 md:px-4 md:py-2 text-[10px] md:text-sm font-black text-orange-500 shadow-[0_0_28px_rgba(251,146,60,0.28)] backdrop-blur lg:right-16"
+        className="absolute right-2 top-2 sm:right-4 sm:top-4 md:right-6 md:top-10 z-20 border border-orange-200 bg-white/90 px-2.5 py-1 md:px-4 md:py-2 text-[10px] md:text-sm font-black text-orange-500 shadow-[0_0_28px_rgba(251,146,60,0.28)] backdrop-blur lg:right-16"
         initial={{ y: -5, rotate: -2, opacity: 0 }}
         whileInView={{ y: [-5, 6, -5], rotate: [-2, 2, -2], opacity: 1 }}
         viewport={viewportTrigger}
@@ -576,7 +576,7 @@ export function JourneySection() {
               >
                 <div className="relative mx-auto flex h-36 sm:h-48 md:h-56 items-center justify-center">
                   <motion.div
-                    className="absolute bottom-5 h-12 w-56 rounded-[50%] bg-neutral-400/12 blur-xl transition group-hover:bg-sky-400/20"
+                    className="absolute bottom-5 h-12 w-56 -[50%] bg-neutral-400/12 blur-xl transition group-hover:bg-sky-400/20"
                     initial={{ scaleX: 0.92, opacity: 0.35 }}
                     whileInView={{ scaleX: [0.92, 1.05, 0.92], opacity: [0.35, 0.58, 0.35] }}
                     viewport={viewportTrigger}

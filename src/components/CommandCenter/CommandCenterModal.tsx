@@ -41,7 +41,7 @@ export function CommandCenterModal({ isOpen, onClose }: CommandCenterModalProps)
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full h-full sm:w-[96vw] sm:h-[96vh] bg-neutral-50 sm:rounded-[32px] shadow-2xl overflow-hidden border border-neutral-300 flex flex-col"
+            className="relative w-full h-full sm:w-[96vw] sm:h-[96vh] bg-neutral-50 sm:-[32px] shadow-2xl overflow-hidden border border-neutral-300 flex flex-col"
           >
             {/* Header / Nav */}
             <header className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-white/80 backdrop-blur-md z-10 sticky top-0">
@@ -96,7 +96,7 @@ export function CommandCenterModal({ isOpen, onClose }: CommandCenterModalProps)
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
-                        className="relative bg-white rounded-[24px] p-6 md:p-8 border border-neutral-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden group hover:border-primary-300 transition-colors"
+                        className="relative bg-white -[24px] p-6 md:p-8 border border-neutral-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden group hover:border-primary-300 transition-colors"
                       >
                         {/* Ambient glow on hover */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-transparent to-primary-500/0 group-hover:from-primary-500/10 transition-colors duration-500"></div>

@@ -52,7 +52,7 @@ export function HowItWorks() {
             {steps.map((step, idx) => (
               <div 
                 key={idx}
-                className="bg-white rounded-2xl p-6 border border-neutral-250/50 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all duration-300"
+                className="bg-white p-6 border border-neutral-250/50 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all duration-300"
               >
                 {/* Number Circle */}
                 <span className="w-11 h-11 rounded-full bg-primary-500 font-extrabold text-[#1c1e23] text-xs flex justify-center items-center mb-5 shadow-sm border border-primary-600/10">

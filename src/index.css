@@ -100,3 +100,42 @@
     }
   }
 }
+
+/* ==========================================================================
+   CUSTOM LEAFLET OVERRIDES & MAP ANIMATIONS
+   ========================================================================== */
+.leaflet-container {
+  background-color: #E8ECEF !important; /* Set water body color */
+  font-family: var(--font-sans), sans-serif;
+  outline: none;
+}
+
+/* Disable the default leaflet pane border outline */
+.leaflet-grab {
+  cursor: grab;
+}
+.leaflet-dragging .leaflet-grab {
+  cursor: grabbing;
+}
+
+/* live network pin pulsing ring animation */
+@keyframes map-pin-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.map-pin-pulse-ring {
+  animation: map-pin-pulse 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* Hide leaflet attribution in dashboard views for clean premium layout */
+.leaflet-control-attribution {
+  display: none !important;
+}
+

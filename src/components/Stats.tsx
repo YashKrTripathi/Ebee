@@ -31,7 +31,7 @@ export function Stats() {
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-neutral-200 rounded-2xl p-6 border border-neutral-300 shadow-md shadow-neutral-300/30 flex flex-col justify-between"
+              className="bg-neutral-200 p-6 border border-neutral-300 shadow-md shadow-neutral-300/30 flex flex-col justify-between"
             >
               <div>
                 {/* Numeric value */}

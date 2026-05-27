@@ -46,14 +46,14 @@ export function FaqSection() {
             return (
               <div 
                 key={idx}
-                className="bg-neutral-50 border border-neutral-200/50 rounded-2xl overflow-hidden transition-all duration-300"
+                className="bg-neutral-50 border border-neutral-200/50 overflow-hidden transition-all duration-300"
               >
                 <button
                   onClick={() => toggleFaq(idx)}
                   className="w-full text-left p-5 flex justify-between items-center gap-4 text-neutral-900 font-extrabold text-sm tracking-tight focus:outline-none"
                 >
                   <span>{faq.q}</span>
-                  <span className="shrink-0 p-1 bg-white border border-neutral-200 rounded-lg text-primary-500">
+                  <span className="shrink-0 p-1 bg-white border border-neutral-200 text-primary-500">
                     {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                   </span>
                 </button>

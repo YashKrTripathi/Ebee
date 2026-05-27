@@ -60,7 +60,7 @@ export function AchievementSystem() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               onViewportEnter={() => setUnlocked((prev) => ({ ...prev, [ach.id]: true }))}
-              className={`relative overflow-hidden rounded-[24px] border p-6 transition-all duration-700 ${
+              className={`relative overflow-hidden -[24px] border p-6 transition-all duration-700 ${
                 isUnlocked 
                   ? "bg-white border-primary-300 shadow-[0_10px_40px_rgba(242,221,52,0.15)]" 
                   : "bg-neutral-50 border-neutral-200"

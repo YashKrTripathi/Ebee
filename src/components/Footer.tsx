@@ -1,19 +1,17 @@
+
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-
 interface FooterProps {
   onRequestAudit: () => void;
 }
-
-export function Footer({ onRequestAudit }: FooterProps) {
+export function Footer({
+  onRequestAudit
+}: FooterProps) {
   const [openSection, setOpenSection] = useState<string | null>(null);
-
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
   };
-
-  return (
-    <footer className="bg-transparent text-neutral-800 pt-10 md:pt-16 pb-6 md:pb-8 border-t border-neutral-300 font-body">
+  return <footer className="bg-transparent text-neutral-800 pt-10 md:pt-16 pb-6 md:pb-8 border-t border-neutral-300 font-body">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Foot Grid */}
@@ -42,10 +40,7 @@ export function Footer({ onRequestAudit }: FooterProps) {
 
           {/* Solutions Column */}
           <div className="col-span-1 border-t border-neutral-300/40 pt-4 md:border-0 md:pt-0">
-            <button 
-              onClick={() => toggleSection('solutions')}
-              className="w-full flex justify-between items-center md:pointer-events-none group"
-            >
+            <button onClick={() => toggleSection('solutions')} className="w-full flex justify-between items-center md:pointer-events-none group">
               <h5 className="text-[10px] font-bold text-neutral-500 tracking-widest uppercase">
                 Solutions
               </h5>
@@ -63,10 +58,7 @@ export function Footer({ onRequestAudit }: FooterProps) {
 
           {/* Audiences Column */}
           <div className="col-span-1 border-t border-neutral-300/40 pt-4 md:border-0 md:pt-0">
-            <button 
-              onClick={() => toggleSection('audiences')}
-              className="w-full flex justify-between items-center md:pointer-events-none group"
-            >
+            <button onClick={() => toggleSection('audiences')} className="w-full flex justify-between items-center md:pointer-events-none group">
               <h5 className="text-[10px] font-bold text-neutral-500 tracking-widest uppercase">
                 Property Audiences
               </h5>
@@ -88,10 +80,7 @@ export function Footer({ onRequestAudit }: FooterProps) {
               <h5 className="text-[10px] font-bold text-neutral-500 tracking-widest uppercase mb-2 md:mb-4">
                 Direct Contact
               </h5>
-              <a 
-                href="mailto:hello@ebeecharge.in" 
-                className="text-xs text-primary-400 font-medium font-mono hover:underline leading-relaxed"
-              >
+              <a href="mailto:hello@ebeecharge.in" className="text-xs text-primary-400 font-medium font-mono hover:underline leading-relaxed">
                 hello@ebeecharge.in
               </a>
               <span className="text-[10px] text-neutral-500 block mt-1.5 leading-relaxed font-body font-normal">
@@ -99,11 +88,8 @@ export function Footer({ onRequestAudit }: FooterProps) {
               </span>
             </div>
 
-            <button
-              onClick={onRequestAudit}
-              className="text-left py-1 text-xs text-[#e8a317] font-bold hover:underline transition focus:outline-none flex items-center gap-1 leading-none"
-            >
-              Request Feasibility Audit ➔
+            <button onClick={onRequestAudit} className="text-left py-1 text-xs text-[#e8a317] font-bold hover:underline transition focus:outline-none flex items-center gap-1 leading-none">
+              Request Feasibility Audit \u2794
             </button>
           </div>
 
@@ -116,6 +102,5 @@ export function Footer({ onRequestAudit }: FooterProps) {
         </div>
 
       </div>
-    </footer>
-  );
+    </footer>;
 }

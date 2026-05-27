@@ -14,7 +14,7 @@ export function SmartMap() {
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
 
   return (
-    <div className="w-full h-full min-h-[500px] relative bg-neutral-900 rounded-[32px] overflow-hidden border border-neutral-800 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+    <div className="w-full h-full min-h-[500px] relative bg-neutral-900 -[32px] overflow-hidden border border-neutral-800 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
       {/* Grid background */}
       <div 
         className="absolute inset-0 opacity-20"
@@ -27,7 +27,7 @@ export function SmartMap() {
       {/* Glowing ambient center */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary-500/10 blur-[100px] rounded-full pointer-events-none"></div>
 
-      <div className="absolute inset-4 sm:inset-10 border border-white/5 rounded-2xl p-4">
+      <div className="absolute inset-4 sm:inset-10 border border-white/5 p-4">
         {/* Map Nodes */}
         {PROPERTIES.map((prop) => (
           <div
@@ -59,7 +59,7 @@ export function SmartMap() {
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 bg-neutral-800/90 backdrop-blur-xl border border-neutral-700 rounded-2xl p-4 shadow-2xl pointer-events-none"
+                  className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 bg-neutral-800/90 backdrop-blur-xl border border-neutral-700 p-4 shadow-2xl pointer-events-none"
                 >
                   <h4 className="text-white font-bold text-sm mb-3 border-b border-neutral-700 pb-2">{prop.name}</h4>
                   <div className="grid grid-cols-2 gap-3 text-xs">
@@ -92,7 +92,7 @@ export function SmartMap() {
         </svg>
 
         <div className="absolute bottom-6 left-6 max-w-xs">
-          <div className="bg-neutral-900/80 backdrop-blur-md border border-neutral-800 p-4 rounded-xl">
+          <div className="bg-neutral-900/80 backdrop-blur-md border border-neutral-800 p-4">
             <h3 className="text-primary-500 font-bold text-sm mb-1 uppercase tracking-wider">Live Network</h3>
             <p className="text-neutral-400 text-xs">Hover over active deployment zones to view real-time performance and usage metrics.</p>
           </div>
