@@ -34,7 +34,7 @@ const navItems = [
   { label: "Software Platform", href: "#software-platform" },
   { label: "Network", href: "#network" },
   { label: "Resources", href: "#resources" },
-  { label: "Case Studies", href: "#case-studies" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "About Us", href: "/about-us" },
 ];
 

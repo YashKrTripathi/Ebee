@@ -11,6 +11,7 @@ import { WhatsAppSimulator } from "./components/WhatsAppSimulator";
 import { FeasibilityModal } from "./components/FeasibilityModal";
 import { SimulatorModal } from "./components/SimulatorModal";
 import AboutUs from "./pages/AboutUs";
+import CaseStudies from "./pages/CaseStudies";
 
 function getCurrentPage() {
   const pathname = window.location.pathname.replace(/\/$/, "");
@@ -18,6 +19,10 @@ function getCurrentPage() {
 
   if (pathname === "/about-us" || hash === "#about-us") {
     return "about-us";
+  }
+
+  if (pathname === "/case-studies" || hash === "#case-studies") {
+    return "case-studies";
   }
 
   return "home";
@@ -61,6 +66,10 @@ export default function App() {
 
   if (currentPage === "about-us") {
     return <AboutUs />;
+  }
+
+  if (currentPage === "case-studies") {
+    return <CaseStudies />;
   }
 
   return (
