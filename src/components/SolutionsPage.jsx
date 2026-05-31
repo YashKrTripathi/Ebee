@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer } from "./Footer.jsx";
+import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
 import whatsappImage from "../../assets/WA.png";
@@ -339,7 +340,7 @@ export function SolutionsPage({ solutionKey }) {
             <h2>Building EV charging that<br />people actually use.</h2>
             <div className="cta-actions">
               <a className="button" href={`mailto:hello@ebeecharge.in?subject=${solution.ctaSubject}`}>{solution.ctaLabel}</a>
-              <a className="button button-ghost" href="/savings-calculator">Compare Savings</a>
+              <a className="button button-ghost" href={withBase("/savings-calculator")}>Compare Savings</a>
             </div>
           </div>
         </div>

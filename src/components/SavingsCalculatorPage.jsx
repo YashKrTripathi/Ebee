@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Footer } from "./Footer.jsx";
+import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
 import carImage from "../../assets/car blank.png";
@@ -234,7 +235,7 @@ export function SavingsCalculatorPage() {
             <h2>Building EV charging that<br />people actually use.</h2>
             <div className="cta-actions">
               <a className="button" href="mailto:hello@ebeecharge.in?subject=EbeeCharge%20Site%20Audit">Book Audit</a>
-              <a className="button button-ghost" href="/#journey">Watch WhatsApp Flow</a>
+              <a className="button button-ghost" href={withBase("/#journey")}>Watch WhatsApp Flow</a>
             </div>
           </div>
         </div>

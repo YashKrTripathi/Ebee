@@ -10,13 +10,14 @@ import { SavingsCalculatorPage } from "./components/SavingsCalculatorPage.jsx";
 import { ProductPage } from "./components/ProductPage.jsx";
 import { SolutionsPage } from "./components/SolutionsPage.jsx";
 import { problems, reliabilityItems, simplicityItems, dashboardItems } from "./data/siteData.js";
+import { getNormalizedPathname } from "./utils/routing.js";
 import whatsappImage from "../assets/WA.png";
 import dashboardImage from "../assets/DASHBOARD.png";
 import reliabilityImage from "../assets/MCHCOLOR.png";
 import ctaCarImage from "../assets/car blank.png";
 
 export default function App() {
-  const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
+  const normalizedPath = getNormalizedPathname();
   const isWhyPage = normalizedPath === "/why-ebee";
   const isSavingsPage = normalizedPath === "/savings-calculator";
   const solutionKey = normalizedPath.startsWith("/solutions/") ? normalizedPath.replace("/solutions/", "") : "";

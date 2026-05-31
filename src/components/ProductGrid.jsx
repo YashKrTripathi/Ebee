@@ -1,5 +1,6 @@
 import React from "react";
 import { products } from "../data/siteData.js";
+import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
 
@@ -9,8 +10,8 @@ const productImages = {
 };
 
 const productLinks = {
-  "smart-db-product": "/products/smart-db",
-  "movable-charger": "/products/movable-charger",
+  "smart-db-product": withBase("/products/smart-db"),
+  "movable-charger": withBase("/products/movable-charger"),
 };
 
 export function ProductGrid() {
@@ -38,7 +39,7 @@ export function ProductGrid() {
         <p id="ecosystem-title">
           Ebee has two core infrastructure products: the Smart DB for everyday AC charging access, and the Movable Charger for flexible DC charging on demand.
         </p>
-        <a className="tiny-button" href="/products/smart-db">Explore Smart DB</a>
+        <a className="tiny-button" href={withBase("/products/smart-db")}>Explore Smart DB</a>
       </div>
     </section>
   );

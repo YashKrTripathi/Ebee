@@ -1,5 +1,6 @@
 import React from "react";
 import { footerColumns } from "../data/siteData.js";
+import { withBase } from "../utils/routing.js";
 
 export function Footer() {
   return (
@@ -13,7 +14,7 @@ export function Footer() {
         ))}
       </div>
       <div className="footer-bottom">
-        <a className="brand footer-brand" href="/">
+        <a className="brand footer-brand" href={withBase("/")}>
           <span className="brand-mark"><span></span></span>
           <span>EBEE</span>
         </a>
@@ -24,5 +25,5 @@ export function Footer() {
 }
 
 function toPageHref(href) {
-  return href.startsWith("#") ? `/${href}` : href;
+  return withBase(href.startsWith("#") ? `/${href}` : href);
 }

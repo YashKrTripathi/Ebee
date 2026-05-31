@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer } from "./Footer.jsx";
+import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
 import dashboardImage from "../../assets/DASHBOARD.png";
@@ -209,12 +210,12 @@ export function ProductPage({ productKey }) {
           Our product portfolio allows multifamily properties to choose the right level of power
           to meet resident charging needs.
         </p>
-        <a className="tiny-button" href="/savings-calculator">See full comparison</a>
+        <a className="tiny-button" href={withBase("/savings-calculator")}>See full comparison</a>
         <div className="product-related-grid">
           {relatedProducts.map((item) => (
             <a
               className={`product-related-card ${item.key === productKey ? "is-active" : ""}`}
-              href={item.key === "savings-calculator" ? "/savings-calculator" : `/products/${item.key}`}
+              href={withBase(item.key === "savings-calculator" ? "/savings-calculator" : `/products/${item.key}`)}
               key={item.key}
             >
               <small>{item.tag}</small>

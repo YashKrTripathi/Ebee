@@ -1,6 +1,7 @@
 import React from "react";
 import { useMegaMenu } from "../hooks/useMegaMenu.js";
 import { navItems } from "../data/siteData.js";
+import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
 
@@ -10,7 +11,7 @@ export function Navbar() {
   return (
     <header className={`site-header ${mobileOpen ? "mobile-open" : ""}`} onMouseLeave={closeMenu}>
       <nav className="navbar" aria-label="Primary navigation">
-        <a className="brand" href="/" aria-label="EbeeCharge home">
+        <a className="brand" href={withBase("/")} aria-label="EbeeCharge home">
           <span className="brand-mark" aria-hidden="true"><span></span></span>
           <span>EBEE</span>
         </a>
@@ -37,8 +38,8 @@ export function Navbar() {
         </div>
 
         <div className="nav-actions">
-          <a href="/#dashboard">Partner Login</a>
-          <a className="button button-small" href="/#audit">Book Audit</a>
+          <a href={withBase("/#dashboard")}>Partner Login</a>
+          <a className="button button-small" href={withBase("/#audit")}>Book Audit</a>
         </div>
       </nav>
 
@@ -100,7 +101,7 @@ function MegaPanel({ item }) {
         <h3>Resources</h3>
         {item.links.map((link) => <a href={toPageHref(link.href)} key={link.label}>{link.label}</a>)}
       </div>
-      <a className="featured-story" href="/#mandate">
+      <a className="featured-story" href={withBase("/#mandate")}>
         <span className="story-collage" aria-hidden="true"><i></i><i></i><i></i></span>
         <span>
           <strong>Turning the 20% EV mandate into resident delight</strong>
@@ -112,5 +113,5 @@ function MegaPanel({ item }) {
 }
 
 function toPageHref(href) {
-  return href.startsWith("#") ? `/${href}` : href;
+  return withBase(href.startsWith("#") ? `/${href}` : href);
 }
