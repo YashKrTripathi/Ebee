@@ -1,12 +1,21 @@
 import React from "react";
+import { AnimatedPhone } from "./AnimatedPhone.jsx";
 import { Footer } from "./Footer.jsx";
 import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
 import whatsappImage from "../../assets/WA.png";
 import dashboardImage from "../../assets/DASHBOARD.png";
-import reliabilityImage from "../../assets/MCHCOLOR.png";
+import lightEvDashboardImage from "../../assets/light_ev_dashboard.png";
+import reliabilityImage from "../../assets/premium_movable_charger.png";
 import carImage from "../../assets/car blank.png";
+import developerBlueprintImage from "../../assets/developer_blueprint.jpg";
+import portfolioCommandCenterImage from "../../assets/portfolio_command_center.png";
+import rwaHeroImage from "../../assets/rwa_hero.png";
+import newConstructionRowImage from "../../assets/new_construction_blueprint.png";
+import retrofitRowImage from "../../assets/retrofit_basement.png";
+import rwaCommitteeImage from "../../assets/rwa_committee_approval.png";
+import developerHandoverImage from "../../assets/developer_handover_operations.png";
 
 const solutionContent = {
   "new-construction": {
@@ -30,7 +39,7 @@ const solutionContent = {
         title: "Reserve the right infrastructure before concrete is poured.",
         copy:
           "New projects can allocate DB space, cabling routes, and parking logic up front, which keeps later EV rollouts cleaner and less expensive.",
-        image: smartDbImage,
+        image: newConstructionRowImage,
         alt: "Smart DB mounted in an Ebee parking infrastructure setup",
       },
       {
@@ -92,7 +101,7 @@ const solutionContent = {
         title: "Work with the parking you already have.",
         copy:
           "Retrofit projects benefit from a central Smart DB because the intelligence sits in one place while the parking bays stay straightforward to equip.",
-        image: reliabilityImage,
+        image: retrofitRowImage,
         alt: "Retrofitted EV charging hardware in a property basement",
       },
       {
@@ -138,8 +147,8 @@ const solutionContent = {
     title: "Developer",
     intro:
       "Use EV-ready charging as a project differentiator: make the property easier to sell, easier to hand over, and easier to scale across future buildings.",
-    heroImage: dashboardImage,
-    heroAlt: "Ebee developer dashboard and charging operations view",
+    heroImage: developerBlueprintImage,
+    heroAlt: "Ebee movable charging setup in an office setting with developers reviewing a blueprint",
     ctaLabel: "Talk to Sales",
     ctaSubject: "Developer%20Solution%20Consultation",
     highlights: [
@@ -162,15 +171,15 @@ const solutionContent = {
         title: "Give residents a charging system that already works.",
         copy:
           "Because resident onboarding, payment, and session control are already built in, the property can transition from construction to operations smoothly.",
-        image: whatsappImage,
-        alt: "Charging starts through WhatsApp and QR code flow",
+        image: developerHandoverImage,
+        alt: "Modern property management tablet handover",
       },
       {
         eyebrow: "Scale across the portfolio",
         title: "Replicate the same operating model across sites.",
         copy:
           "Developers and operators can monitor usage and recovery across multiple properties from one place, which keeps rollout learning reusable.",
-        image: dashboardImage,
+        image: portfolioCommandCenterImage,
         alt: "Multi-site EV charging dashboard",
       },
     ],
@@ -200,7 +209,7 @@ const solutionContent = {
     title: "RWA",
     intro:
       "Give the resident welfare association a charging system that is easy to approve, easy to explain, and easy to manage once residents start using it every day.",
-    heroImage: whatsappImage,
+    heroImage: rwaHeroImage,
     heroAlt: "Ebee resident charging flow for RWAs",
     ctaLabel: "Talk to Sales",
     ctaSubject: "RWA%20Solution%20Consultation",
@@ -216,7 +225,7 @@ const solutionContent = {
         title: "Install a system that is easy to explain to residents.",
         copy:
           "RWAs need a setup that protects common power, keeps parking rights intact, and gives residents a charging option without bringing in billing chaos.",
-        image: reliabilityImage,
+        image: rwaCommitteeImage,
         alt: "Property charging infrastructure designed for resident committees",
       },
       {
@@ -232,7 +241,7 @@ const solutionContent = {
         title: "Give the committee one dashboard for the whole system.",
         copy:
           "The property team can monitor sessions, receipts, and usage-based recovery without manual follow-ups or spreadsheet disputes.",
-        image: dashboardImage,
+        image: lightEvDashboardImage,
         alt: "Dashboard for RWA charging operations",
       },
     ],
@@ -268,8 +277,8 @@ export function SolutionsPage({ solutionKey }) {
         <p className="why-kicker">{solution.eyebrow}</p>
         <h1>{solution.title}</h1>
         <p>{solution.intro}</p>
-        <div className="why-hero-device" aria-hidden="true">
-          <img src={solution.heroImage} alt="" />
+        <div className={`why-hero-device ${solutionKey === 'developer' || solutionKey === 'rwa' ? 'is-wide' : ''}`} aria-hidden="true">
+          {solution.heroImage === whatsappImage ? <AnimatedPhone /> : <img src={solution.heroImage} alt="" />}
         </div>
       </section>
 
@@ -284,18 +293,21 @@ export function SolutionsPage({ solutionKey }) {
       </section>
 
       <section className="why-story" aria-label={`${solution.title} implementation details`}>
-        {solution.rows.map((row, index) => (
-          <article className={`why-story-row ${index % 2 === 1 ? "is-reversed" : ""}`} key={row.title}>
+        {solution.rows.map((row, index) => {
+          const isDashboard = row.image === lightEvDashboardImage || row.image === portfolioCommandCenterImage;
+          return (
+            <article className={`why-story-row ${index % 2 === 1 && !isDashboard ? "is-reversed" : ""} ${isDashboard ? "is-dashboard-row" : ""}`} key={row.title}>
             <div className="why-story-copy">
               <p className="section-label">{row.eyebrow}</p>
               <h2>{row.title}</h2>
               <p>{row.copy}</p>
             </div>
-            <div className="why-story-visual">
-              <img src={row.image} alt={row.alt} loading="lazy" />
+            <div className={`why-story-visual ${row.image === whatsappImage ? 'is-transparent' : ''}`}>
+              {row.image === whatsappImage ? <AnimatedPhone /> : <img src={row.image} alt={row.alt} loading="lazy" />}
             </div>
           </article>
-        ))}
+        );
+        })}
       </section>
 
       <section className="why-savings">

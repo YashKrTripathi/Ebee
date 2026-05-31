@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar.jsx";
+import { AnimatedPhone } from "./components/AnimatedPhone.jsx";
 import { HeroVideo } from "./components/HeroVideo.jsx";
 import { AccordionGroup } from "./components/AccordionGroup.jsx";
 import { ProductGrid } from "./components/ProductGrid.jsx";
@@ -144,7 +145,7 @@ export default function App() {
 
         <section className="feature-row feature-row-alt" id="journey">
           <div className="feature-visual reveal">
-            <img className="feature-image wa-image" src={whatsappImage} alt="WhatsApp-based live charging session UI" loading="lazy" />
+            <AnimatedPhone />
           </div>
           <div className="feature-copy reveal">
             <p className="section-label">Simplicity</p>
