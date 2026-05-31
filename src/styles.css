@@ -643,23 +643,70 @@ button { font: inherit; }
   line-height: 1.35;
   font-weight: 680;
 }
-.testimonial { padding: 72px 19px 104px; text-align: center; max-width: 608px; margin: 0 auto; }
-.quote-mark {
-  margin: 0 auto 26px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: grid;
+.testimonial {
+  position: relative;
+  padding: 72px 96px 104px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.testimonial-card {
+  max-width: 608px;
+  min-height: 220px;
+  margin: 0 auto;
+}
+.testimonial-logo {
+  display: inline-grid;
   place-items: center;
-  color: var(--orange);
-  border: 2px solid var(--border);
-  font-weight: 800;
+  min-width: 96px;
+  min-height: 42px;
+  margin: 0 auto 34px;
+  color: #e53023;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
 }
 blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 .quote-name { margin-top: 19px; font-weight: 780; font-size: 11px; }
-.quote-dots { display: flex; justify-content: center; gap: 6px; margin-top: 38px; }
-.quote-dots span { width: 6px; height: 6px; border-radius: 50%; background: #c9c9c2; }
-.quote-dots span:first-child { background: var(--ink); }
+.quote-role {
+  margin: 4px 0 0;
+  color: #6d6d65;
+  font-size: 10px;
+  font-weight: 650;
+}
+.quote-dots { display: flex; justify-content: center; gap: 6px; margin-top: 28px; }
+.quote-dots button {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #c9c9c2;
+  cursor: pointer;
+}
+.quote-dots button.is-active { background: var(--ink); }
+.testimonial-arrow {
+  position: absolute;
+  top: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #9d9d96;
+  border-radius: 50%;
+  background: transparent;
+  color: #4f4f49;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.testimonial-arrow-prev { left: 0; }
+.testimonial-arrow-next { right: 0; }
+.testimonial-arrow:hover,
+.testimonial-arrow:focus-visible {
+  border-color: var(--ink);
+  color: var(--ink);
+}
 .final-cta {
   padding: 40px 6vw 0;
   background: linear-gradient(transparent 50%, var(--olive) 50%);
@@ -1822,14 +1869,22 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
   .testimonial {
     padding: 56px 18px 72px;
   }
-  .quote-mark {
-    margin-bottom: 18px;
+  .testimonial-card {
+    min-height: 250px;
+    padding: 0 34px;
+  }
+  .testimonial-logo {
+    margin-bottom: 22px;
   }
   blockquote {
     font-size: 14px;
   }
   .quote-dots {
-    margin-top: 28px;
+    margin-top: 22px;
+  }
+  .testimonial-arrow {
+    width: 30px;
+    height: 30px;
   }
   .final-cta {
     padding: 24px 18px 0;

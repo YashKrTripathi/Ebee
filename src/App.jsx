@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar.jsx";
 import { HeroVideo } from "./components/HeroVideo.jsx";
 import { AccordionGroup } from "./components/AccordionGroup.jsx";
@@ -16,7 +16,41 @@ import dashboardImage from "../assets/DASHBOARD.png";
 import reliabilityImage from "../assets/MCHCOLOR.png";
 import ctaCarImage from "../assets/car blank.png";
 
+const testimonials = [
+  {
+    logo: "Ferrari Properties",
+    quote: "We have many chargers installed, and there is never an issue of drivers waiting to charge. I love the convenience and that I can schedule charging when the price is favorable.",
+    name: "John Kennedy",
+    role: "Ferrari Property Management",
+  },
+  {
+    logo: "Urban Nest",
+    quote: "Ebee helped us add resident charging without changing the parking layout. The setup is simple for residents and easy for our facilities team to monitor.",
+    name: "Anita Rao",
+    role: "Urban Nest Apartments",
+  },
+  {
+    logo: "GreenGate",
+    quote: "The WhatsApp flow made adoption surprisingly smooth. Residents understood how to start a session on day one, and billing stayed transparent.",
+    name: "Rohan Mehta",
+    role: "GreenGate Residency",
+  },
+  {
+    logo: "Skyline RWA",
+    quote: "We wanted a charging system that could grow bay by bay. Ebee gave us that flexibility without creating new operational work for the association.",
+    name: "Priya Nair",
+    role: "Skyline Heights RWA",
+  },
+  {
+    logo: "Metro Habitat",
+    quote: "The central dashboard gives us a clear view of sessions, energy, and collections. It feels built for residential properties, not adapted from a public charger model.",
+    name: "Karan Shah",
+    role: "Metro Habitat Operations",
+  },
+];
+
 export default function App() {
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
   const normalizedPath = getNormalizedPathname();
   const isWhyPage = normalizedPath === "/why-ebee";
   const isSavingsPage = normalizedPath === "/savings-calculator";
@@ -25,6 +59,11 @@ export default function App() {
   const productKey = normalizedPath.startsWith("/products/") ? normalizedPath.replace("/products/", "") : "";
   const isProductPage = productKey === "smart-db" || productKey === "movable-charger";
   const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage;
+  const activeTestimonial = testimonials[testimonialIndex];
+
+  function changeTestimonial(direction) {
+    setTestimonialIndex((currentIndex) => (currentIndex + direction + testimonials.length) % testimonials.length);
+  }
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver(
@@ -127,13 +166,31 @@ export default function App() {
 
         <InfrastructureJourney />
 
-        <section className="testimonial" id="proof">
-          <div className="quote-mark reveal">E</div>
-          <blockquote className="reveal">
-            Ebee lets a society start small, keep every resident in their own bay, and scale charging without creating cable chaos or billing disputes.
-          </blockquote>
-          <p className="quote-name reveal">Property Operations Team</p>
-          <div className="quote-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <section className="testimonial" id="proof" aria-label="Customer testimonials">
+          <button className="testimonial-arrow testimonial-arrow-prev" type="button" aria-label="Previous testimonial" onClick={() => changeTestimonial(-1)}>
+            <span aria-hidden="true">{"<"}</span>
+          </button>
+          <div className="testimonial-card">
+            <div className="testimonial-logo reveal">{activeTestimonial.logo}</div>
+            <blockquote className="reveal">{activeTestimonial.quote}</blockquote>
+            <p className="quote-name reveal">{activeTestimonial.name}</p>
+            <p className="quote-role reveal">{activeTestimonial.role}</p>
+            <div className="quote-dots" aria-label="Testimonial slides">
+              {testimonials.map((testimonial, index) => (
+                <button
+                  className={index === testimonialIndex ? "is-active" : ""}
+                  type="button"
+                  aria-label={`Show testimonial ${index + 1}: ${testimonial.logo}`}
+                  aria-current={index === testimonialIndex ? "true" : undefined}
+                  key={testimonial.logo}
+                  onClick={() => setTestimonialIndex(index)}
+                />
+              ))}
+            </div>
+          </div>
+          <button className="testimonial-arrow testimonial-arrow-next" type="button" aria-label="Next testimonial" onClick={() => changeTestimonial(1)}>
+            <span aria-hidden="true">{">"}</span>
+          </button>
         </section>
 
         <section className="final-cta" id="audit">
