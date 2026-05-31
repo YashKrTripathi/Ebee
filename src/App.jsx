@@ -8,6 +8,7 @@ import { InfrastructureJourney } from "./components/InfrastructureJourney.jsx";
 import { WhyEbeePage } from "./components/WhyEbeePage.jsx";
 import { SavingsCalculatorPage } from "./components/SavingsCalculatorPage.jsx";
 import { ProductPage } from "./components/ProductPage.jsx";
+import { SolutionsPage } from "./components/SolutionsPage.jsx";
 import { problems, reliabilityItems, simplicityItems, dashboardItems } from "./data/siteData.js";
 import whatsappImage from "../assets/WA.png";
 import dashboardImage from "../assets/DASHBOARD.png";
@@ -18,9 +19,11 @@ export default function App() {
   const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
   const isWhyPage = normalizedPath === "/why-ebee";
   const isSavingsPage = normalizedPath === "/savings-calculator";
+  const solutionKey = normalizedPath.startsWith("/solutions/") ? normalizedPath.replace("/solutions/", "") : "";
+  const isSolutionPage = ["new-construction", "retrofit", "developer", "rwa"].includes(solutionKey);
   const productKey = normalizedPath.startsWith("/products/") ? normalizedPath.replace("/products/", "") : "";
   const isProductPage = productKey === "smart-db" || productKey === "movable-charger";
-  const isStandalonePage = isWhyPage || isSavingsPage || isProductPage;
+  const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage;
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver(
@@ -60,7 +63,7 @@ export default function App() {
       window.clearTimeout(timeoutId);
       window.removeEventListener("hashchange", scrollToHashTarget);
     };
-  }, [isWhyPage, isSavingsPage, isProductPage]);
+  }, [isWhyPage, isSavingsPage, isSolutionPage, isProductPage]);
 
   return (
     <>
@@ -69,6 +72,8 @@ export default function App() {
         <WhyEbeePage />
       ) : isSavingsPage ? (
         <SavingsCalculatorPage />
+      ) : isSolutionPage ? (
+        <SolutionsPage solutionKey={solutionKey} />
       ) : isProductPage ? (
         <ProductPage productKey={productKey} />
       ) : (

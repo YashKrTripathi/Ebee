@@ -26,18 +26,15 @@ export const navItems = [
       {
         title: "Projects",
         links: [
-          { label: "New Construction", href: "#solutions" },
-          { label: "Retrofit", href: "#solutions" },
-          { label: "Commercial Buildings", href: "#solutions" },
+          { label: "New Construction", href: "/solutions/new-construction" },
+          { label: "Retrofit", href: "/solutions/retrofit" },
         ],
       },
       {
         title: "Roles",
         links: [
-          { label: "Developers", href: "#solutions" },
-          { label: "RWAs", href: "#solutions" },
-          { label: "Facility Managers", href: "#solutions" },
-          { label: "EV Drivers", href: "#solutions" },
+          { label: "Developer", href: "/solutions/developer" },
+          { label: "RWA", href: "/solutions/rwa" },
         ],
       },
     ],
@@ -100,7 +97,7 @@ export const dashboardItems = [
 export const footerColumns = [
   { title: "Why Ebee", links: [{ label: "Smart DB", href: "#smart-db" }, { label: "EV Mandate", href: "#mandate" }, { label: "WhatsApp + UPI", href: "#journey" }] },
   { title: "Products", links: [{ label: "Smart DB", href: "/products/smart-db" }, { label: "Movable Charger", href: "/products/movable-charger" }] },
-  { title: "Solutions", links: [{ label: "Residential Societies", href: "#solutions" }, { label: "Developers", href: "#solutions" }, { label: "Commercial Properties", href: "#solutions" }, { label: "Campuses", href: "#solutions" }] },
+  { title: "Solutions", links: [{ label: "New Construction", href: "/solutions/new-construction" }, { label: "Retrofit", href: "/solutions/retrofit" }, { label: "Developer", href: "/solutions/developer" }, { label: "RWA", href: "/solutions/rwa" }] },
   { title: "Resources", links: [{ label: "Feasibility Audit", href: "#audit" }, { label: "Case Studies", href: "#proof" }, { label: "FAQ", href: "#proof" }] },
   { title: "Company", links: [{ label: "About", href: "#footer" }, { label: "Contact", href: "mailto:hello@ebeecharge.in" }] },
   { title: "Legal", links: [{ label: "Privacy Policy", href: "#footer" }, { label: "Terms of Service", href: "#footer" }] },
