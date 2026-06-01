@@ -4,16 +4,16 @@ import { navItems } from "../data/siteData.js";
 import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
+import logoImage from "../../assets/ebee-charge-logo.svg";
 
 export function Navbar() {
-  const { activeMenu, mobileOpen, openMenu, closeMenu, toggleMenu, toggleMobile } = useMegaMenu();
+  const { activeMenu, mobileOpen, openMenu, closeMenu, toggleMenu, toggleMobile, closeMobile } = useMegaMenu();
 
   return (
     <header className={`site-header ${mobileOpen ? "mobile-open" : ""}`} onMouseLeave={closeMenu}>
       <nav className="navbar" aria-label="Primary navigation">
         <a className="brand" href={withBase("/")} aria-label="EbeeCharge home">
-          <span className="brand-mark" aria-hidden="true"><span></span></span>
-          <span>EBEE</span>
+          <img src={withBase("/ebee_charge_logo.png")} alt="ebee charge" style={{ height: "64px", width: "auto", margin: "-12px 0" }} />
         </a>
 
         <button className="mobile-toggle" type="button" aria-label="Open menu" aria-expanded={mobileOpen} onClick={toggleMobile}>
@@ -43,6 +43,28 @@ export function Navbar() {
         </div>
       </nav>
 
+      <div className="mobile-menu" aria-hidden={!mobileOpen}>
+        <div className="mobile-menu-scroll">
+          {navItems.map((item) => (
+            <section className="mobile-menu-section" key={item.id}>
+              <h2>{item.label}</h2>
+              <div className="mobile-menu-links">
+                {getMobileLinks(item).map((link) => (
+                  <a href={toPageHref(link.href)} key={`${item.id}-${link.label}`} onClick={closeMobile}>
+                    <span>{link.label}</span>
+                    {link.copy && <small>{link.copy}</small>}
+                  </a>
+                ))}
+              </div>
+            </section>
+          ))}
+          <div className="mobile-menu-actions">
+            <a href={withBase("/#dashboard")} onClick={closeMobile}>Partner Login</a>
+            <a className="button" href={withBase("/#audit")} onClick={closeMobile}>Book Audit</a>
+          </div>
+        </div>
+      </div>
+
       <div className={`mega ${activeMenu ? "is-open" : ""}`}>
         {navItems.map((item) => (
           <section className={`mega-panel ${activeMenu === item.id ? "is-active" : ""}`} key={item.id} aria-label={`${item.label} menu`}>
@@ -52,6 +74,18 @@ export function Navbar() {
       </div>
     </header>
   );
+}
+
+function getMobileLinks(item) {
+  if (item.type === "simple" || item.type === "resources") {
+    return item.links;
+  }
+
+  if (item.type === "products") {
+    return item.products;
+  }
+
+  return item.columns.flatMap((column) => column.links);
 }
 
 function MegaPanel({ item }) {

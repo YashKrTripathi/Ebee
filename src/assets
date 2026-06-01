@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 275 106" role="img" aria-labelledby="title desc">
+  <title id="title">ebee charge</title>
+  <desc id="desc">Transparent Ebee Charge wordmark in electric blue.</desc>
+  <g fill="none" stroke="#5955F7" stroke-linecap="round" stroke-linejoin="round" stroke-width="8.5">
+    <path d="M64 53a20 20 0 1 0-4 14" />
+    <path d="M27 54h37" />
+    <path d="M91 12v58" />
+    <path d="M91 45c6-11 28-12 36 1 9 14-3 30-20 30-10 0-16-4-16-8" />
+    <path d="M170 53a20 20 0 1 0-4 14" />
+    <path d="M133 54h37" />
+    <path d="M221 53a20 20 0 1 0-4 14" />
+    <path d="M184 54h37" />
+  </g>
+  <text
+    x="139"
+    y="94"
+    fill="#5955F7"
+    font-family="Inter, Plus Jakarta Sans, Arial, sans-serif"
+    font-size="27"
+    font-weight="500"
+    letter-spacing="-0.8"
+  >
+    charge
+  </text>
+</svg>

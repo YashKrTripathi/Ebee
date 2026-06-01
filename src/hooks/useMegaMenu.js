@@ -23,5 +23,6 @@ export function useMegaMenu() {
     closeMenu: () => setActiveMenu(""),
     toggleMenu: (menu) => setActiveMenu((current) => (current === menu ? "" : menu)),
     toggleMobile: () => setMobileOpen((current) => !current),
+    closeMobile: () => setMobileOpen(false),
   };
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import { AnimatedPhone } from "./AnimatedPhone.jsx";
+import { WhatsAppSimulator } from "./WhatsAppSimulator.jsx";
+import { AnimatedCharger } from "./AnimatedCharger.jsx";
 import { Footer } from "./Footer.jsx";
 import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
@@ -41,22 +42,6 @@ const solutionContent = {
           "New projects can allocate DB space, cabling routes, and parking logic up front, which keeps later EV rollouts cleaner and less expensive.",
         image: newConstructionRowImage,
         alt: "Smart DB mounted in an Ebee parking infrastructure setup",
-      },
-      {
-        eyebrow: "Resident journey",
-        title: "Give buyers a charging story they can understand instantly.",
-        copy:
-          "QR initiation, WhatsApp sessions, and UPI payments make the charging experience feel familiar while still giving the property full control.",
-        image: whatsappImage,
-        alt: "WhatsApp-based EV charging flow",
-      },
-      {
-        eyebrow: "Operations",
-        title: "Handover with visibility already built in.",
-        copy:
-          "Per-socket metering and the property dashboard keep usage, settlements, and resident support easy for the operations team after possession.",
-        image: dashboardImage,
-        alt: "Ebee dashboard for charging operations",
       },
     ],
     comparisonTitle: "Why the new-build model is easier to operate.",
@@ -103,22 +88,6 @@ const solutionContent = {
           "Retrofit projects benefit from a central Smart DB because the intelligence sits in one place while the parking bays stay straightforward to equip.",
         image: retrofitRowImage,
         alt: "Retrofitted EV charging hardware in a property basement",
-      },
-      {
-        eyebrow: "Resident access",
-        title: "Make charging feel simple from the first day.",
-        copy:
-          "Residents continue using the same WhatsApp and UPI flow, so the new charging setup doesn’t feel like another utility system they must learn.",
-        image: whatsappImage,
-        alt: "Resident charging flow in WhatsApp",
-      },
-      {
-        eyebrow: "Operations",
-        title: "Keep billing and load decisions in one place.",
-        copy:
-          "The dashboard shows who charged, how much energy was used, and what was recovered, which keeps the management committee and property team aligned.",
-        image: dashboardImage,
-        alt: "Dashboard for monitoring EV charging operations",
       },
     ],
     comparisonTitle: "Why retrofit does not need to feel heavy.",
@@ -278,7 +247,7 @@ export function SolutionsPage({ solutionKey }) {
         <h1>{solution.title}</h1>
         <p>{solution.intro}</p>
         <div className={`why-hero-device ${solutionKey === 'developer' || solutionKey === 'rwa' ? 'is-wide' : ''}`} aria-hidden="true">
-          {solution.heroImage === whatsappImage ? <AnimatedPhone /> : <img src={solution.heroImage} alt="" />}
+          {solution.heroImage === whatsappImage ? <WhatsAppSimulator /> : <img src={solution.heroImage} alt="" />}
         </div>
       </section>
 
@@ -302,8 +271,8 @@ export function SolutionsPage({ solutionKey }) {
               <h2>{row.title}</h2>
               <p>{row.copy}</p>
             </div>
-            <div className={`why-story-visual ${row.image === whatsappImage ? 'is-transparent' : ''}`}>
-              {row.image === whatsappImage ? <AnimatedPhone /> : <img src={row.image} alt={row.alt} loading="lazy" />}
+            <div className={`why-story-visual ${row.image === whatsappImage ? 'is-transparent whatsapp-simulator-visual' : ''}`}>
+              {row.image === whatsappImage ? <WhatsAppSimulator /> : <img src={row.image} alt={row.alt} loading="lazy" />}
             </div>
           </article>
         );
