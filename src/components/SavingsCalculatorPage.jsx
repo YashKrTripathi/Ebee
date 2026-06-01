@@ -115,7 +115,7 @@ export function SavingsCalculatorPage() {
               onChange={(value) => updateInput("parkingSpaces", value)}
             />
             <StepperInput
-              label="Number of Orange outlets"
+              label="Number of Ebee outlets"
               value={inputs.outlets}
               min={1}
               max={200}
@@ -212,7 +212,7 @@ export function SavingsCalculatorPage() {
           </div>
           <div className="comparison-highlight">
             <img src={smartDbImage} alt="Ebee Smart DB" loading="lazy" />
-            <h3>Orange Outlets</h3>
+            <h3>Ebee Outlets</h3>
             <p>{formatMoney(calc.ebeeTotalCost)}</p>
             <small>{Math.max(0, calc.savingsPercent).toFixed(0)}% of savings</small>
           </div>

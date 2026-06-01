@@ -1,7 +1,6 @@
 import React from "react";
 import { footerColumns } from "../data/siteData.js";
 import { withBase } from "../utils/routing.js";
-import logoImage from "../../assets/ebee-charge-logo.svg";
 
 export function Footer() {
   return (

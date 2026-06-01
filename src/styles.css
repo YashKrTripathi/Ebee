@@ -1,12 +1,14 @@
 :root {
-  --orange: #ff6b00;
-  --orange-deep: #db4f12;
-  --ink: #151611;
-  --muted: #62655b;
-  --soft: #f7f7f4;
-  --surface: #ffffff;
+  --primary: #5A4FF3;
+  --primary-light: #7C72FF;
+  --primary-hover: #4F46E5;
+  --primary-dark: #4338CA;
+  --ink: #000000;
+  --muted: #333333;
+  --soft: #FFFFFF;
+  --surface: #FFFFFF;
   --green: #dbe4d1;
-  --olive: #252b12;
+  --olive: #FFFFFF;
   --border: rgba(0, 0, 0, 0.08);
   --shadow: 0 24px 80px rgba(21, 22, 17, 0.12);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -48,7 +50,7 @@ button { font: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 21px;
   font-weight: 780;
   letter-spacing: 0;
@@ -84,7 +86,7 @@ button { font: inherit; }
   font-size: 15px;
   padding: 12px 0;
 }
-.nav-item.is-active { color: var(--orange); }
+.nav-item.is-active { color: var(--primary); }
 .chevron {
   width: 8px;
   height: 8px;
@@ -101,8 +103,8 @@ button { font: inherit; }
   justify-content: center;
   min-height: 40px;
   padding: 0 21px;
-  border-radius: 6px;
-  background: var(--orange);
+  border-radius: 12px;
+  background: var(--primary);
   color: #fff;
   font-weight: 720;
   border: 1px solid transparent;
@@ -204,7 +206,7 @@ button { font: inherit; }
   padding-bottom: 7vh;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.38);
 }
-.eyebrow, .section-label { color: var(--orange); font-size: 14px; font-weight: 760; margin: 0 0 21px; }
+.eyebrow, .section-label { color: var(--primary); font-size: 14px; font-weight: 760; margin: 0 0 21px; }
 .hero h1 {
   margin: 0;
   max-width: 720px;
@@ -280,7 +282,7 @@ button { font: inherit; }
 }
 .product-card li::before {
   content: "✓";
-  color: var(--orange);
+  color: var(--primary);
   font-size: 18px;
   font-weight: 760;
   line-height: 1;
@@ -305,7 +307,7 @@ button { font: inherit; }
   margin-top: 14px;
   border: 1px solid var(--border);
   padding: 7px 14px;
-  border-radius: 6px;
+  border-radius: 12px;
   color: var(--ink);
   font-size: 13px;
 }
@@ -363,7 +365,7 @@ button { font: inherit; }
   font-weight: 620;
   font-size: 13px;
 }
-.accordion button span { color: var(--orange); font-size: 18px; }
+.accordion button span { color: var(--primary); font-size: 18px; }
 .accordion p { margin: 0; display: none; color: var(--muted); line-height: 1.55; padding: 0 0 16px; font-size: 13px; }
 .accordion button.is-open + p { display: block; }
 .feature-visual { min-height: 314px; border-radius: 8px; overflow: hidden; }
@@ -475,7 +477,7 @@ button { font: inherit; }
   animation: drawCurrent 5.6s ease-in-out infinite;
 }
 .current-dot {
-  fill: var(--orange);
+  fill: var(--primary);
   filter: drop-shadow(0 0 16px rgba(255, 107, 0, 0.8));
 }
 @keyframes drawCurrent {
@@ -554,7 +556,7 @@ button { font: inherit; }
   stroke: #6fb55c;
 }
 .plug-point {
-  fill: var(--orange);
+  fill: var(--primary);
   animation: pulsePoint 2.4s ease-in-out infinite;
 }
 @keyframes cableDraw {
@@ -624,7 +626,7 @@ button { font: inherit; }
 }
 .journey-eyebrow {
   margin: 14px 0 8px;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 9px;
   font-weight: 880;
   letter-spacing: 0.22em;
@@ -806,7 +808,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .calc-kicker {
   margin: 0;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 18px;
   font-weight: 760;
 }
@@ -906,7 +908,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .calc-output-card p {
   margin: 0;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 44px;
   line-height: 1;
   font-weight: 530;
@@ -1059,7 +1061,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .comparison-highlight p {
   margin: 4px 0 0;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 46px;
   line-height: 1;
 }
@@ -1176,7 +1178,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .product-page-stats li::before {
   content: "\2713";
-  color: var(--orange);
+  color: var(--primary);
   font-size: 13px;
   font-weight: 700;
 }
@@ -1302,7 +1304,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .product-specs summary::after {
   content: "+";
-  color: var(--orange);
+  color: var(--primary);
   font-size: 18px;
 }
 .product-specs details[open] summary::after {
@@ -1386,7 +1388,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .why-kicker {
   margin: 0 0 12px;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 13px;
   font-weight: 760;
 }
@@ -1573,7 +1575,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
   font-weight: 680;
 }
 .savings-row strong {
-  color: var(--orange);
+  color: var(--primary);
   font-weight: 760;
 }
 .savings-card {
@@ -1589,13 +1591,13 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
   font-size: 12px;
 }
 .savings-card > strong {
-  color: var(--orange);
+  color: var(--primary);
   font-size: 58px;
   line-height: 1;
 }
 .savings-card h3 {
   margin: 10px 0 0;
-  color: var(--orange);
+  color: var(--primary);
   font-size: 28px;
   line-height: 1.02;
   font-weight: 760;
@@ -1639,7 +1641,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .why-faq summary::after {
   content: "+";
-  color: var(--orange);
+  color: var(--primary);
   font-size: 18px;
   font-weight: 500;
 }
@@ -2806,7 +2808,7 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
 }
 .battery-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #facc15, #f59e0b);
+  background: linear-gradient(135deg, #5A4FF3 0%, #7C72FF 100%);
   border-radius: 4px;
 }
 .phone-input-area {
@@ -3005,7 +3007,7 @@ summary {
 
   .mobile-menu-section h2 {
     margin: 0 0 10px;
-    color: var(--orange);
+    color: var(--primary);
     font-size: 13px;
     line-height: 1.2;
     font-weight: 820;
@@ -3727,3 +3729,28 @@ summary {
     min-height: 384px;
   }
 }
+
+
+/* Global Theme Overrides */
+.button-secondary { color: var(--ink); background: #fff; border: 1px solid var(--border); border-radius: 12px; }
+.button-ghost { background: #fff !important; border: 1px solid var(--primary) !important; color: var(--primary) !important; border-radius: 12px !important; }
+.button-ghost:hover { background: var(--primary) !important; color: #fff !important; }
+.cta-overlay .button-ghost { background: #fff !important; border: 1px solid var(--primary) !important; color: var(--primary) !important; }
+.cta-overlay .button-ghost:hover { background: var(--primary) !important; color: #fff !important; }
+.final-cta { background: linear-gradient(transparent 50%, #1F2937 50%) !important; padding-bottom: 0 !important; }
+.footer { background: #1F2937 !important; color: #fff !important; padding: 56px 6vw 34px !important; border-top: none; }
+.footer h3, .footer-section summary { font-size: 11px; margin: 0 0 19px; color: #fff !important; }
+.footer a { display: block; color: rgba(255,255,255,0.85) !important; margin-bottom: 10px; font-size: 11px; }
+.footer a:hover { color: var(--primary) !important; }
+.footer-bottom { padding-top: 34px; margin-top: 56px; border-top: 1px solid rgba(255,255,255,0.1) !important; display: flex; justify-content: space-between; align-items: flex-end; }
+.footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.6) !important; margin: 0; }
+.footer .brand img { filter: brightness(0) invert(1); opacity: 0.9; }
+.product-card, .solution-card, .savings-card, .why-story-visual, .feature-visual, .calc-output-card { background: #fff !important; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+.product-card:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+.savings-card strong, .savings-card h3, .calc-output-card p { color: var(--primary) !important; }
+body { color: var(--ink); background: var(--surface); }
+h1, h2, h3, h4, h5, h6 { color: var(--ink); }
+.nav-item { color: var(--muted); }
+.nav-item.is-active { color: var(--primary); }
+.journey-eyebrow, .why-kicker, .calc-kicker, .section-label, .eyebrow { color: var(--primary) !important; }
+.hero-copy h1, .hero-copy h2, .hero-copy h3, .hero-copy p, .hero h1, .hero h2, .hero h3, .hero p { color: #fff !important; }
