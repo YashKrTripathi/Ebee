@@ -10,10 +10,9 @@ import { WhyEbeePage } from "./components/WhyEbeePage.jsx";
 import { SavingsCalculatorPage } from "./components/SavingsCalculatorPage.jsx";
 import { ProductPage } from "./components/ProductPage.jsx";
 import { SolutionsPage } from "./components/SolutionsPage.jsx";
-import { problems, reliabilityItems, simplicityItems, dashboardItems } from "./data/siteData.js";
+import { problems, reliabilityItems, simplicityItems } from "./data/siteData.js";
 import { getNormalizedPathname } from "./utils/routing.js";
 import whatsappImage from "../assets/WA.png";
-import dashboardImage from "../assets/DASHBOARD.png";
 import reliabilityImage from "../assets/MCHCOLOR.png";
 import ctaCarImage from "../assets/car blank.png";
 
@@ -151,17 +150,6 @@ export default function App() {
             <p className="section-label">Simplicity</p>
             <h2>Charging that starts in WhatsApp.</h2>
             <AccordionGroup items={simplicityItems} />
-          </div>
-        </section>
-
-        <section className="dashboard-section" id="dashboard">
-          <div className="dashboard-copy reveal">
-            <p className="section-label">Scalable</p>
-            <h2>A property dashboard for charging operations.</h2>
-            <AccordionGroup items={dashboardItems} />
-          </div>
-          <div className="laptop reveal">
-            <img className="feature-image dashboard-image" src={dashboardImage} alt="Ebee property dashboard showing energy, revenue, chargers, sessions, and site activity" loading="lazy" />
           </div>
         </section>
 
