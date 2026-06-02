@@ -96,7 +96,7 @@ export const dashboardItems = [
 
 export const footerColumns = [
   { title: "Why Ebee", links: [{ label: "Smart DB", href: "#smart-db" }, { label: "EV Mandate", href: "#mandate" }, { label: "WhatsApp + UPI", href: "#journey" }] },
-  { title: "Products", links: [{ label: "Smart DB", href: "/products/smart-db" }, { label: "Movable Charger", href: "/products/movable-charger" }] },
+  { title: "Products", links: [{ label: "ebeeOS", href: "/products/ebee-os" }, { label: "Smart DB", href: "/products/smart-db" }, { label: "Movable Charger", href: "/products/movable-charger" }] },
   { title: "Solutions", links: [{ label: "New Construction", href: "/solutions/new-construction" }, { label: "Retrofit", href: "/solutions/retrofit" }, { label: "Developer", href: "/solutions/developer" }, { label: "RWA", href: "/solutions/rwa" }] },
   { title: "Resources", links: [{ label: "Feasibility Audit", href: "#audit" }, { label: "Case Studies", href: "#proof" }, { label: "FAQ", href: "#proof" }] },
   { title: "Company", links: [{ label: "About", href: "#footer" }, { label: "Contact", href: "mailto:hello@ebeecharge.in" }] },

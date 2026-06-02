@@ -10,6 +10,7 @@ import { WhyEbeePage } from "./components/WhyEbeePage.jsx";
 import { SavingsCalculatorPage } from "./components/SavingsCalculatorPage.jsx";
 import { ProductPage } from "./components/ProductPage.jsx";
 import { SolutionsPage } from "./components/SolutionsPage.jsx";
+import { EbeeOsPage } from "./components/EbeeOsPage.jsx";
 import { problems, reliabilityItems, simplicityItems } from "./data/siteData.js";
 import { getNormalizedPathname } from "./utils/routing.js";
 import whatsappImage from "../assets/WA.png";
@@ -57,8 +58,9 @@ export default function App() {
   const solutionKey = normalizedPath.startsWith("/solutions/") ? normalizedPath.replace("/solutions/", "") : "";
   const isSolutionPage = ["new-construction", "retrofit", "developer", "rwa"].includes(solutionKey);
   const productKey = normalizedPath.startsWith("/products/") ? normalizedPath.replace("/products/", "") : "";
+  const isEbeeOsPage = productKey === "ebee-os";
   const isProductPage = productKey === "smart-db" || productKey === "movable-charger";
-  const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage;
+  const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage || isEbeeOsPage;
   const activeTestimonial = testimonials[testimonialIndex];
 
   function changeTestimonial(direction) {
@@ -103,7 +105,7 @@ export default function App() {
       window.clearTimeout(timeoutId);
       window.removeEventListener("hashchange", scrollToHashTarget);
     };
-  }, [isWhyPage, isSavingsPage, isSolutionPage, isProductPage]);
+  }, [isWhyPage, isSavingsPage, isSolutionPage, isProductPage, isEbeeOsPage]);
 
   return (
     <>
@@ -114,6 +116,8 @@ export default function App() {
         <SavingsCalculatorPage />
       ) : isSolutionPage ? (
         <SolutionsPage solutionKey={solutionKey} />
+      ) : isEbeeOsPage ? (
+        <EbeeOsPage />
       ) : isProductPage ? (
         <ProductPage productKey={productKey} />
       ) : (
