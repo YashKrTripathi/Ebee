@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer } from "./Footer.jsx";
+import { ElectricBorder } from "./ElectricBorder.jsx";
 import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
@@ -170,13 +171,21 @@ export function ProductPage({ productKey }) {
               <h2>{feature.title}</h2>
               <p>{feature.copy}</p>
             </div>
-            <div className="product-feature-image-wrap">
-              {feature.video ? (
-                <video src={feature.video} autoPlay loop muted playsInline className="product-feature-video" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-              ) : (
-                <img src={feature.image} alt={feature.imageAlt} loading="lazy" />
-              )}
-            </div>
+            <ElectricBorder
+              className="product-feature-electric-border"
+              color={productKey === "smart-db" ? "#1a659e" : "#ff6b35"}
+              speed={0.85}
+              chaos={0.1}
+              borderRadius={12}
+            >
+              <div className="product-feature-image-wrap">
+                {feature.video ? (
+                  <video src={feature.video} autoPlay loop muted playsInline className="product-feature-video" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                ) : (
+                  <img src={feature.image} alt={feature.imageAlt} loading="lazy" />
+                )}
+              </div>
+            </ElectricBorder>
           </article>
         ))}
       </section>

@@ -3744,6 +3744,40 @@ summary {
 .footer a { display: block; color: rgba(255,255,255,0.85) !important; margin-bottom: 10px; font-size: 11px; }
 .footer a:hover { color: var(--primary) !important; }
 .footer-bottom { padding-top: 34px; margin-top: 56px; border-top: 1px solid rgba(255,255,255,0.1) !important; display: flex; justify-content: space-between; align-items: flex-end; }
+
+/* Persistent navigation */
+html {
+  scroll-padding-top: 96px;
+}
+
+body {
+  padding-top: 72px;
+}
+
+.site-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+@media (max-width: 980px) {
+  html {
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    padding-top: 64px;
+  }
+
+  main,
+  .why-page,
+  .product-page {
+    padding-top: 0 !important;
+  }
+}
 .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.6) !important; margin: 0; }
 .footer .brand img { filter: brightness(0) invert(1); opacity: 0.9; }
 .product-card, .solution-card, .savings-card, .why-story-visual, .feature-visual, .calc-output-card { background: #fff !important; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
@@ -3755,3 +3789,185 @@ h1, h2, h3, h4, h5, h6 { color: var(--ink); }
 .nav-item.is-active { color: var(--primary); }
 .journey-eyebrow, .why-kicker, .calc-kicker, .section-label, .eyebrow { color: var(--primary) !important; }
 .hero-copy h1, .hero-copy h2, .hero-copy h3, .hero-copy p, .hero h1, .hero h2, .hero h3, .hero p { color: #fff !important; }
+
+/* Desktop polish pass: cleaner Orange-style density */
+@media (min-width: 981px) {
+  html {
+    scroll-padding-top: 96px;
+  }
+
+  body {
+    padding-top: 65px;
+  }
+
+  .site-header {
+    background: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08) !important;
+    backdrop-filter: blur(18px);
+  }
+
+  .navbar {
+    width: min(100%, 1728px);
+    height: 65px;
+    padding: 0 84px;
+    gap: 28px;
+  }
+
+  .brand {
+    width: 172px;
+    min-height: 58px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .brand img {
+    height: 64px !important;
+    width: auto !important;
+    margin: 0 !important;
+    display: block;
+  }
+
+  .nav-center {
+    flex: 1;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .nav-item,
+  .nav-actions {
+    color: #202020;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .nav-actions {
+    gap: 22px;
+  }
+
+  .nav-actions > a:not(.button) {
+    color: #000;
+  }
+
+  .button-small {
+    min-width: 120px;
+    min-height: 40px;
+    padding: 0 20px;
+    border-radius: 7px;
+    font-size: 16px;
+  }
+
+  .feature-row,
+  .dashboard-section {
+    width: min(100%, 1560px);
+    padding: 82px 86px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: clamp(72px, 6.5vw, 124px);
+  }
+
+  .feature-row-alt {
+    min-height: calc(100vh - 65px);
+  }
+
+  .feature-row-alt .feature-visual {
+    order: -1;
+    justify-self: center;
+  }
+
+  .feature-visual {
+    min-height: 0;
+    border-radius: 16px;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .whatsapp-simulator-visual {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    overflow: visible;
+  }
+
+  .whatsapp-simulator-visual .wa-premium-shell {
+    max-width: 340px;
+    transform: none !important;
+    filter: none;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.42),
+      0 18px 36px rgba(0,0,0,0.16),
+      0 0 38px rgba(90,79,243,0.12);
+  }
+
+  .whatsapp-simulator-visual .wa-premium-screen {
+    height: 600px;
+    border-radius: 52px;
+  }
+
+  .feature-copy {
+    max-width: 700px;
+  }
+
+  .section-label {
+    margin-bottom: 52px !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .feature-copy h2,
+  .dashboard-copy h2 {
+    max-width: 720px;
+    margin-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(38px, 2.8vw, 52px) !important;
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .accordion {
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .accordion button {
+    min-height: 82px;
+    padding: 0 8px 0 0;
+    color: #111;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .accordion button span {
+    color: #202020 !important;
+    font-size: 30px;
+    font-weight: 300;
+  }
+
+  .accordion p {
+    max-width: 620px;
+    padding: 0 0 24px;
+    color: #2f2f2f;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .reliability-image,
+  .feature-image {
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .whatsapp-simulator-visual .wa-premium-shell {
+    max-width: 340px;
+  }
+
+  .whatsapp-simulator-visual .wa-premium-screen {
+    height: 600px;
+  }
+}
