@@ -1,4 +1,5 @@
 import React from "react";
+import { Send } from "lucide-react";
 import { footerColumns } from "../data/siteData.js";
 import { withBase } from "../utils/routing.js";
 
@@ -19,7 +20,10 @@ export function Footer() {
         <a className="brand footer-brand" href={withBase("/")}>
           <img src={withBase("/ebee_charge_logo.png")} alt="ebee charge" style={{ height: "48px", width: "auto", margin: "-10px 0" }} />
         </a>
-        <p>© 2026 EbeeCharge. All rights reserved.</p>
+        <p>&copy; 2026 EbeeCharge. All rights reserved.</p>
+        <a className="footer-social" href="https://www.linkedin.com/" aria-label="EbeeCharge social profile">
+          <Send size={15} strokeWidth={2.4} />
+        </a>
       </div>
     </footer>
   );

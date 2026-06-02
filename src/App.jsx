@@ -11,7 +11,9 @@ import { SavingsCalculatorPage } from "./components/SavingsCalculatorPage.jsx";
 import { ProductPage } from "./components/ProductPage.jsx";
 import { SolutionsPage } from "./components/SolutionsPage.jsx";
 import { EbeeOsPage } from "./components/EbeeOsPage.jsx";
-import { problems, reliabilityItems, simplicityItems } from "./data/siteData.js";
+import { BlogArticlePage } from "./components/BlogArticlePage.jsx";
+import { CaseStudyPage } from "./components/CaseStudyPage.jsx";
+import { problems, reliabilityItems, simplicityItems, dashboardItems } from "./data/siteData.js";
 import { getNormalizedPathname } from "./utils/routing.js";
 import whatsappImage from "../assets/WA.png";
 import reliabilityImage from "../assets/MCHCOLOR.png";
@@ -60,7 +62,9 @@ export default function App() {
   const productKey = normalizedPath.startsWith("/products/") ? normalizedPath.replace("/products/", "") : "";
   const isEbeeOsPage = productKey === "ebee-os";
   const isProductPage = productKey === "smart-db" || productKey === "movable-charger";
-  const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage || isEbeeOsPage;
+  const isBlogArticlePage = normalizedPath === "/blog" || normalizedPath.startsWith("/blog/");
+  const isCaseStudyPage = normalizedPath.startsWith("/resources/case-studies/");
+  const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage || isEbeeOsPage || isBlogArticlePage;
   const activeTestimonial = testimonials[testimonialIndex];
 
   function changeTestimonial(direction) {
@@ -109,9 +113,11 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar variant={isBlogArticlePage ? "minimal" : "default"} />
       {isWhyPage ? (
         <WhyEbeePage />
+      ) : isCaseStudyPage ? (
+        <CaseStudyPage />
       ) : isSavingsPage ? (
         <SavingsCalculatorPage />
       ) : isSolutionPage ? (
@@ -120,6 +126,8 @@ export default function App() {
         <EbeeOsPage />
       ) : isProductPage ? (
         <ProductPage productKey={productKey} />
+      ) : isBlogArticlePage ? (
+        <BlogArticlePage />
       ) : (
       <main id="top">
         <HeroVideo />
@@ -200,7 +208,7 @@ export default function App() {
         </section>
       </main>
       )}
-      {!isStandalonePage && <Footer />}
+      {(!isStandalonePage || isBlogArticlePage) && <Footer />}
     </>
   );
 }
