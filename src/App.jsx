@@ -16,6 +16,8 @@ import { CaseStudyPage } from "./components/CaseStudyPage.jsx";
 import { problems, reliabilityItems, simplicityItems, dashboardItems } from "./data/siteData.js";
 import { getNormalizedPathname } from "./utils/routing.js";
 import { TestimonialCarousel } from "./components/TestimonialCarousel.jsx";
+import { AboutUsPage } from "./components/AboutUsPage.jsx";
+import { BlogIndexPage } from "./components/BlogIndexPage.jsx";
 import whatsappImage from "../assets/WA.png";
 import reliabilityImage from "../assets/MCHCOLOR.png";
 import ctaCarImage from "../assets/car blank.png";
@@ -29,9 +31,11 @@ export default function App() {
   const productKey = normalizedPath.startsWith("/products/") ? normalizedPath.replace("/products/", "") : "";
   const isEbeeOsPage = productKey === "ebee-os";
   const isProductPage = productKey === "smart-db" || productKey === "movable-charger";
-  const isBlogArticlePage = normalizedPath === "/blog" || normalizedPath.startsWith("/blog/");
+  const isBlogIndexPage = normalizedPath === "/blog";
+  const isBlogArticlePage = normalizedPath.startsWith("/blog/") && normalizedPath !== "/blog";
   const isCaseStudyPage = normalizedPath.startsWith("/resources/case-studies/");
-  const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage || isEbeeOsPage || isBlogArticlePage;
+  const isAboutPage = normalizedPath === "/about-us";
+  const isStandalonePage = isWhyPage || isSavingsPage || isSolutionPage || isProductPage || isEbeeOsPage || isBlogIndexPage || isBlogArticlePage || isCaseStudyPage || isAboutPage;
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver(
@@ -80,6 +84,8 @@ export default function App() {
         <WhyEbeePage />
       ) : isCaseStudyPage ? (
         <CaseStudyPage />
+      ) : isAboutPage ? (
+        <AboutUsPage />
       ) : isSavingsPage ? (
         <SavingsCalculatorPage />
       ) : isSolutionPage ? (
@@ -88,6 +94,8 @@ export default function App() {
         <EbeeOsPage />
       ) : isProductPage ? (
         <ProductPage productKey={productKey} />
+      ) : isBlogIndexPage ? (
+        <BlogIndexPage />
       ) : isBlogArticlePage ? (
         <BlogArticlePage />
       ) : (

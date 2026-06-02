@@ -1,4 +1,4 @@
-const ROUTE_ROOTS = new Set(["why-ebee", "savings-calculator", "products", "solutions", "blog", "resources"]);
+const ROUTE_ROOTS = new Set(["why-ebee", "savings-calculator", "products", "solutions", "blog", "resources", "about-us", "ebee-os"]);
 
 export function getBasePath(pathname = window.location.pathname) {
   const segments = pathname.split("/").filter(Boolean);

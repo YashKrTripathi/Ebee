@@ -44,11 +44,9 @@ export const navItems = [
     label: "Resources",
     type: "resources",
     links: [
-      { label: "Blog", href: "/blog/right-sized-ev-charging-for-apartment-communities" },
-      { label: "Feasibility Audit", href: "#audit" },
-  { label: "Case Studies", href: "/resources/case-studies/building-ev-charging" },
-      { label: "Safety Notes", href: "#proof" },
-      { label: "About Ebee", href: "#footer" },
+      { label: "Blogs", href: "/blog" },
+      { label: "Case Studies", href: "/resources/case-studies/building-ev-charging" },
+      { label: "About Us", href: "/about-us" },
     ],
   },
 ];
@@ -99,7 +97,7 @@ export const footerColumns = [
   { title: "Why Ebee", links: [{ label: "Smart DB", href: "#smart-db" }, { label: "EV Mandate", href: "#mandate" }, { label: "WhatsApp + UPI", href: "#journey" }] },
   { title: "Products", links: [{ label: "ebeeOS", href: "/products/ebee-os" }, { label: "Smart DB", href: "/products/smart-db" }, { label: "Movable Charger", href: "/products/movable-charger" }] },
   { title: "Solutions", links: [{ label: "New Construction", href: "/solutions/new-construction" }, { label: "Retrofit", href: "/solutions/retrofit" }, { label: "Developer", href: "/solutions/developer" }, { label: "RWA", href: "/solutions/rwa" }] },
-  { title: "Resources", links: [{ label: "Blog", href: "/blog/right-sized-ev-charging-for-apartment-communities" }, { label: "Feasibility Audit", href: "#audit" }, { label: "Case Studies", href: "#proof" }, { label: "FAQ", href: "#proof" }] },
+  { title: "Resources", links: [{ label: "Blog", href: "/blog" }, { label: "Feasibility Audit", href: "#audit" }, { label: "Case Studies", href: "#proof" }, { label: "FAQ", href: "#proof" }] },
   { title: "Company", links: [{ label: "About", href: "#footer" }, { label: "Contact", href: "mailto:hello@ebeecharge.in" }] },
   { title: "Legal", links: [{ label: "Privacy Policy", href: "#footer" }, { label: "Terms of Service", href: "#footer" }] },
 ];

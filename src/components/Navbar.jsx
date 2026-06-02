@@ -182,26 +182,29 @@ function MegaPanel({ item }) {
         <h3>Resources</h3>
         {item.links.map((link) => <a href={toPageHref(link.href)} key={link.label}>{link.label}</a>)}
       </div>
-      <a className="featured-story" href={withBase("/resources/case-studies/20-percent-ev-mandate")}>
-        <span className="story-collage" aria-hidden="true">
-          <div className="mini-masonry-wrapper">
-            <Masonry
-              items={masonryItems}
-              ease="power3.out"
-              duration={0.6}
-              stagger={0.05}
-              animateFrom="bottom"
-              scaleOnHover={false}
-              blurToFocus={true}
-              colorShiftOnHover={false}
-            />
+      <div>
+        <h3>Featured Stories</h3>
+        <a className="featured-story" href={withBase("/resources/case-studies/20-percent-ev-mandate")}>
+          <span className="story-collage" aria-hidden="true">
+            <div className="mini-masonry-wrapper">
+              <Masonry
+                items={masonryItems}
+                ease="power3.out"
+                duration={0.6}
+                stagger={0.05}
+                animateFrom="bottom"
+                scaleOnHover={false}
+                blurToFocus={true}
+                colorShiftOnHover={false}
+              />
+            </div>
+          </span>
+          <div className="featured-story-copy" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <strong style={{ fontSize: "15px", lineHeight: "1.4" }}>Turning the 20% EV mandate into resident delight</strong>
+            <small style={{ textDecoration: "underline", color: "inherit", opacity: 0.8 }}>Read the deployment story</small>
           </div>
-        </span>
-        <span>
-          <strong>Turning the 20% EV mandate into resident delight</strong>
-          <small>Read the deployment story</small>
-        </span>
-      </a>
+        </a>
+      </div>
     </div>
   );
 }
