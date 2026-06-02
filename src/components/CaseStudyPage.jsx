@@ -4,7 +4,7 @@ import { withBase } from "../utils/routing.js";
 import Masonry from "./Masonry.jsx";
 import heroImage from "../../assets/rwa_hero.png";
 import infographicImage from "../../assets/light_ev_dashboard.png";
-import installationImage from "../../assets/retrofit_basement.png";
+import installationImage from "../../assets/image 2.png";
 import supportingImage from "../../assets/rwa_committee_approval.png";
 import ctaImage from "../../assets/mvch.png";
 
