@@ -144,14 +144,21 @@ function MegaPanel({ item }) {
     };
 
     return (
-      <div className="mega-products">
-        {item.products.map((product) => (
-          <a className="mega-product" href={toPageHref(product.href)} key={product.label}>
-            <img className="mega-product-image" src={productImages[product.label]} alt={product.label} loading="lazy" />
-            <strong>{product.label}</strong>
-            <small>{product.copy}</small>
-          </a>
-        ))}
+      <div className="mega-products mega-products-split">
+        <div className="mega-products-software">
+          <h3>Software</h3>
+          <a href={toPageHref("/products/ebee-os")}>Ebee OS</a>
+        </div>
+        <div className="mega-products-divider"></div>
+        <div className="mega-products-hardware">
+          {item.products.map((product) => (
+            <a className="mega-product" href={toPageHref(product.href)} key={product.label}>
+              <img className="mega-product-image" src={productImages[product.label]} alt={product.label} loading="lazy" />
+              <strong>{product.label}</strong>
+              <small>{product.copy}</small>
+            </a>
+          ))}
+        </div>
       </div>
     );
   }

@@ -208,11 +208,16 @@ export function EbeeOsPage() {
 
       <TestimonialCarousel className="testimonial os-shared-testimonial" />
 
-      <section className="os-final-banner">
-        <img src={ctaCarImage} alt="Ebee charging installed at a residential property" loading="lazy" />
-        <div>
-          <h2>Reliable, zero-maintenance, easy-to-install EV charger that's even easier to manage.</h2>
-          <a className="button" href="mailto:hello@ebeecharge.in?subject=ebeeOS%20Contact%20Sales">Contact Sales</a>
+      <section className="final-cta" id="audit">
+        <div className="cta-image reveal is-visible">
+          <img src={ctaCarImage} alt="Ebee charging installed at a residential property parking bay" loading="lazy" />
+          <div className="cta-overlay">
+            <h2>Building EV charging that<br />people actually use.</h2>
+            <div className="cta-actions">
+              <a className="button" href="mailto:hello@ebeecharge.in?subject=Feasibility%20Audit%20Request">Book Audit</a>
+              <a className="button button-ghost" href={withBase("/#journey")}>Watch WhatsApp Flow</a>
+            </div>
+          </div>
         </div>
       </section>
 

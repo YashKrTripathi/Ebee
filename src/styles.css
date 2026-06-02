@@ -151,6 +151,34 @@ button { font: inherit; }
   align-items: start;
   gap: 54px;
 }
+.mega-products-split {
+  grid-template-columns: 160px 1px repeat(2, minmax(180px, 220px));
+  gap: 40px;
+}
+.mega-products-software {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+.mega-products-software h3 {
+  margin-bottom: 8px;
+}
+.mega-products-software a {
+  font-weight: 500;
+  transition: color 200ms var(--ease);
+}
+.mega-products-software a:hover {
+  color: var(--primary);
+}
+.mega-products-divider {
+  width: 1px;
+  height: 100%;
+  background: var(--border);
+}
+.mega-products-hardware {
+  display: contents;
+}
 .mega-list, .mega-columns > div, .mega-resources > div { display: grid; gap: 18px; }
 .mega-divider { width: 1px; height: 176px; background: var(--border); }
 .mega-product { text-align: center; display: grid; place-items: center; gap: 8px; }
