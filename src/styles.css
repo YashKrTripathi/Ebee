@@ -1193,8 +1193,9 @@ blockquote { margin: 0; font-size: 15px; line-height: 1.58; }
   height: 5px;
   border-radius: 50%;
   background: #cfd1cc;
+  cursor: pointer;
 }
-.product-page-dots span:nth-child(2) {
+.product-page-dots span.is-active {
   background: #3a3d36;
 }
 .product-page-features {
