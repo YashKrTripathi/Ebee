@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer } from "./Footer.jsx";
+import { ElectricBorder } from "./ElectricBorder.jsx";
 import { withBase } from "../utils/routing.js";
 import smartDbImage from "../../assets/SMART DB.png";
 import movableChargerImage from "../../assets/mvch.png";
@@ -7,6 +8,15 @@ import dashboardImage from "../../assets/DASHBOARD.png";
 import whatsappImage from "../../assets/WA.png";
 import reliabilityImage from "../../assets/MCHCOLOR.png";
 import carImage from "../../assets/car blank.png";
+import completeVideo from "../../assets/its_too_short_i_need_complete.mp4";
+import movableVideo from "../../assets/Create_a_cinematic_ultra_real.mp4";
+import movableChargerImage1 from "../../assets/movable charger 1.png";
+import movableChargerImage2 from "../../assets/movable charger 2.png";
+import movableChargerImage3 from "../../assets/movable charger 3.png";
+import smartDbImage1 from "../../assets/smart db 1.png";
+import smartDbImage2 from "../../assets/smart db 2.png";
+import smartDbFeatureImage from "../../assets/Gemini_Generated_Image_54esxy54esxy54es.png";
+import movableFeatureImage from "../../assets/Gemini_Generated_Image_1luqjv1luqjv1luq.png";
 
 const productContent = {
   "smart-db": {
@@ -14,7 +24,7 @@ const productContent = {
     subtitle: "Central intelligence for reliable everyday charging.",
     intro:
       "Smart DB centralizes control, metering, and safety in one distribution board so each resident can charge from an assigned bay without repeating expensive smart hardware everywhere.",
-    image: smartDbImage,
+    images: [smartDbImage, smartDbImage1, smartDbImage2],
     imageAlt: "Ebee Smart DB product image",
     ctaLabel: "Contact Sales",
     stats: [
@@ -28,24 +38,11 @@ const productContent = {
         title: "Centralized intelligence",
         copy:
           "Traditional setups repeat internet and control hardware in each charger. Smart DB keeps that intelligence centralized so each bay can stay simple and cost-efficient.",
-        image: reliabilityImage,
+        image: smartDbFeatureImage,
         imageAlt: "Smart DB connected charging infrastructure",
       },
-      {
-        title: "WhatsApp + UPI resident flow",
-        copy:
-          "Residents scan a QR at their bay, continue in WhatsApp, and pay via UPI. Sessions activate only after authorization so energy access remains controlled.",
-        image: whatsappImage,
-        imageAlt: "WhatsApp charging session interface",
-      },
-      {
-        title: "Operations dashboard visibility",
-        copy:
-          "Property teams can monitor usage, receipts, and charging behavior from one dashboard to reduce disputes and simplify monthly reconciliation.",
-        image: dashboardImage,
-        imageAlt: "Dashboard tracking charger usage and receipts",
-      },
     ],
+    fullWidthVideo: completeVideo,
     specs: [
       { label: "Electrical specification", value: "230V AC compatible with per-point relay control and metering integration." },
       { label: "Connectivity", value: "Hybrid connectivity with centralized internet fallback and local Bluetooth operations." },
@@ -57,7 +54,7 @@ const productContent = {
     subtitle: "DC charging on demand that moves to the resident.",
     intro:
       "Movable Charger provides fast 30kW / 60kW charging through controlled 63A interlock sockets, so high-power charging can be delivered where and when it is needed.",
-    image: movableChargerImage,
+    images: [movableChargerImage3, movableChargerImage2, movableChargerImage1],
     imageAlt: "Ebee Movable Charger product image",
     ctaLabel: "Contact Sales",
     stats: [
@@ -71,24 +68,11 @@ const productContent = {
         title: "Fast charging without fixed-bay overbuild",
         copy:
           "Instead of installing DC hardware everywhere, one movable unit can serve multiple bays with intelligent scheduling and secure socket interfaces.",
-        image: carImage,
+        image: movableFeatureImage,
         imageAlt: "EV charging in a residential parking bay",
       },
-      {
-        title: "Integrated with resident workflow",
-        copy:
-          "The movable unit plugs into the same resident flow: QR initiation, WhatsApp journey, UPI payment, and controlled session activation.",
-        image: whatsappImage,
-        imageAlt: "Resident charging flow through WhatsApp",
-      },
-      {
-        title: "Managed through property operations stack",
-        copy:
-          "Movable charger sessions sync into the same operations dashboard so usage, billing, and settlements remain consistent across sites.",
-        image: dashboardImage,
-        imageAlt: "Property operations dashboard for charging",
-      },
     ],
+    fullWidthVideo: movableVideo,
     specs: [
       { label: "Power options", value: "Available in 30kW and 60kW DC variants for diverse site requirements." },
       { label: "Charging interface", value: "Operates through interlocked 63A sockets with controlled access and safety checks." },
@@ -127,19 +111,41 @@ const relatedProducts = [
 
 export function ProductPage({ productKey }) {
   const product = productContent[productKey] || productContent["smart-db"];
+  const images = product.images || [product.image];
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [productKey]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <main className="product-page" id={`product-${productKey}`}>
       <section className="product-page-hero">
         <div className="product-page-hero-visual">
           <div className="product-page-hero-carousel">
-            <button type="button" aria-label="Previous product image">&lt;</button>
-            <img className={`product-page-hero-image ${productKey === "smart-db" ? "is-smart-db" : ""}`} src={product.image} alt={product.imageAlt} loading="lazy" />
-            <button type="button" aria-label="Next product image">&gt;</button>
+            {images.length > 1 ? (
+              <button type="button" aria-label="Previous product image" onClick={prevImage}>&lt;</button>
+            ) : <div />}
+            <img className={`product-page-hero-image ${productKey === "smart-db" ? "is-smart-db" : ""}`} src={images[currentImageIndex]} alt={product.imageAlt} loading="lazy" />
+            {images.length > 1 ? (
+              <button type="button" aria-label="Next product image" onClick={nextImage}>&gt;</button>
+            ) : <div />}
           </div>
-          <div className="product-page-dots" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </div>
+          {images.length > 1 && (
+            <div className="product-page-dots" aria-hidden="true">
+              {images.map((_, i) => (
+                <span key={i} className={i === currentImageIndex ? "is-active" : ""} onClick={() => setCurrentImageIndex(i)}></span>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="product-page-hero-copy">
@@ -162,16 +168,33 @@ export function ProductPage({ productKey }) {
         {product.features.map((feature, index) => (
           <article className={`product-feature-row ${index % 2 === 1 ? "is-reversed" : ""}`} key={feature.title}>
             <div className="product-feature-copy">
-              <p className="section-label">{index + 1}</p>
               <h2>{feature.title}</h2>
               <p>{feature.copy}</p>
             </div>
-            <div className="product-feature-image-wrap">
-              <img src={feature.image} alt={feature.imageAlt} loading="lazy" />
-            </div>
+            <ElectricBorder
+              className="product-feature-electric-border"
+              color={productKey === "smart-db" ? "#1a659e" : "#ff6b35"}
+              speed={0.85}
+              chaos={0.1}
+              borderRadius={12}
+            >
+              <div className="product-feature-image-wrap">
+                {feature.video ? (
+                  <video src={feature.video} autoPlay loop muted playsInline className="product-feature-video" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                ) : (
+                  <img src={feature.image} alt={feature.imageAlt} loading="lazy" />
+                )}
+              </div>
+            </ElectricBorder>
           </article>
         ))}
       </section>
+
+      {product.fullWidthVideo && (
+        <section style={{ maxWidth: "1080px", margin: "72px auto 0", padding: "0 24px" }}>
+          <video src={product.fullWidthVideo} autoPlay loop muted playsInline style={{ width: "100%", borderRadius: "10px", display: "block" }} />
+        </section>
+      )}
 
       <section className="product-solution-strip" aria-label="Complete charging solution">
         <p>The complete EV charging solution.</p>

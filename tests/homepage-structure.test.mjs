@@ -56,7 +56,7 @@ assert(productGrid.includes("../../assets/mvch.png"), "Movable Charger product c
 assert(app.includes("function ProblemIcon"), "Problem strip should render custom line icons.");
 assert(app.includes("problem-icon"), "Problem strip icons should use the problem-icon SVG class.");
 assert(app.includes("../assets/WA.png"), "WhatsApp feature section should use the provided WA.png asset.");
-assert(app.includes("../assets/DASHBOARD.png"), "Dashboard section should use the provided DASHBOARD.png asset.");
+assert(!app.includes('id="dashboard"'), "Homepage should not render the removed dashboard section.");
 assert(app.includes("../assets/MCHCOLOR.png"), "Reliability section should use the provided MCHCOLOR.png asset.");
 assert(app.includes("../assets/car blank.png"), "Final CTA should use the provided no-text car blank.png image asset.");
 assert(app.includes("<InfrastructureJourney"), "App should render the remade infrastructure journey before testimonials.");

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { CheckCheck } from "lucide-react";
+import { CheckCheck, Send } from "lucide-react";
 import "./WhatsAppSimulator.css";
 
 export function WhatsAppSimulator() {
@@ -326,11 +326,9 @@ export function WhatsAppSimulator() {
 
           {/* Input Bar (Disabled) */}
           <div className="wa-premium-input">
-            <input disabled type="text" placeholder="Auto-playing demo..." />
-            <button className="wa-premium-send">
-              <svg viewBox="0 0 20 20" fill="currentColor">
-                <path d="M10.5 1.5H3a1.5 1.5 0 00-1.5 1.5v14a1.5 1.5 0 001.5 1.5h14a1.5 1.5 0 001.5-1.5V9.5m-8-8l8 8m0 0v-3m0 3h-3" />
-              </svg>
+            <input disabled type="text" placeholder="Typing..." />
+            <button className="wa-premium-send" aria-label="Send message">
+              <Send aria-hidden="true" strokeWidth={2.4} />
             </button>
           </div>
         </div>

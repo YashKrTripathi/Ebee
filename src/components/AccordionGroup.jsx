@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export function AccordionGroup({ items }) {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(-1);
 
   return (
     <div className="accordion">
