@@ -9,7 +9,7 @@ import whatsappImage from "../../assets/WA.png";
 import reliabilityImage from "../../assets/MCHCOLOR.png";
 import carImage from "../../assets/car blank.png";
 import completeVideo from "../../assets/its_too_short_i_need_complete.mp4";
-import movableVideo from "../../assets/Create_a_cinematic_ultra_real.mp4";
+import movableVideo from "../../assets/mcvd.mp4";
 import movableChargerImage1 from "../../assets/movable charger 1.png";
 import movableChargerImage2 from "../../assets/movable charger 2.png";
 import movableChargerImage3 from "../../assets/movable charger 3.png";
